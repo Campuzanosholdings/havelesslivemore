@@ -1,0 +1,39 @@
+{
+  "properties": [
+    {
+      "slug": "sol-naciente",
+      "name": "Casa del Sol Naciente",
+      "icalFeeds": [
+        { "platform": "Airbnb", "urlEnv": "ICAL_SOL_NACIENTE" }
+      ]
+    },
+    {
+      "slug": "luna-cresciente",
+      "name": "Casa de Luna Cresciente",
+      "icalFeeds": [
+        { "platform": "Airbnb", "urlEnv": "ICAL_LUNA_CRESCIENTE" }
+      ]
+    },
+    {
+      "slug": "miami-oasis",
+      "name": "Miami Oasis with Pool",
+      "icalFeeds": [
+        { "platform": "Airbnb", "urlEnv": "ICAL_MIAMI_OASIS" }
+      ]
+    },
+    {
+      "slug": "copacabana-apt",
+      "name": "Apartment on the Beach Block",
+      "icalFeeds": [
+        { "platform": "Airbnb", "urlEnv": "ICAL_COPACABANA_APT" }
+      ]
+    },
+    {
+      "slug": "copacabana-studio",
+      "name": "Studio on the Beach Block",
+      "icalFeeds": [
+        { "platform": "Airbnb", "urlEnv": "ICAL_COPACABANA_STUDIO" }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Vlog | Have Less, Live More</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;1,9..144,400&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#14282F; --sand:#F1E9D8; --clay:#B5563A;
+    --seafoam:#6E9C8F; --gold:#C79A46; --paper:#FBF8F2;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{background:var(--paper);color:var(--navy);font-family:'Inter',sans-serif;}
+  .wrap{max-width:1180px;margin:0 auto;padding:28px;}
+
+  header{padding:20px 0 8px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;}
+  a.back{font-size:.85rem;color:var(--clay);text-decoration:none;}
+  a.back:hover{text-decoration:underline;}
+  .brand{font-family:'Fraunces',serif;font-weight:600;font-size:1.4rem;}
+  .brand em{font-style:italic;color:var(--clay);}
+
+  .hero{padding:36px 0 8px;}
+  .eyebrow{font-size:.78rem;text-transform:uppercase;letter-spacing:.14em;color:var(--seafoam);font-weight:600;}
+  h1{font-family:'Fraunces',serif;font-weight:500;font-size:clamp(2rem,5vw,3.2rem);margin:10px 0 14px;line-height:1.05;}
+  p.sub{color:#5c6b66;max-width:560px;font-size:1.02rem;line-height:1.5;margin-bottom:8px;}
+
+  .follow{
+    display:inline-flex;align-items:center;gap:8px;margin-top:18px;
+    padding:10px 18px;border-radius:999px;border:1px solid var(--navy);
+    color:var(--navy);text-decoration:none;font-size:.85rem;font-weight:500;
+    transition:background .2s ease,color .2s ease;
+  }
+  .follow:hover{background:var(--navy);color:var(--sand);}
+
+  .entries{
+    display:grid;grid-template-columns:repeat(3,1fr);gap:22px;
+    margin:52px 0 40px;
+  }
+  @media(max-width:900px){.entries{grid-template-columns:repeat(2,1fr);}}
+  @media(max-width:600px){.entries{grid-template-columns:1fr;}}
+
+  .entry-card{
+    background:#fff;border:1px solid #e6dac0;border-radius:12px;overflow:hidden;
+    display:flex;flex-direction:column;
+  }
+  .entry-thumb{
+    aspect-ratio:4/3;background:linear-gradient(135deg,#e6dac0,#d8c9a8);
+    display:flex;align-items:center;justify-content:center;
+    font-family:'IBM Plex Mono',monospace;font-size:.75rem;color:#9c8a63;
+  }
+  .entry-body{padding:16px 18px 20px;}
+  .entry-date{font-family:'IBM Plex Mono',monospace;font-size:.72rem;color:var(--clay);text-transform:uppercase;letter-spacing:.06em;}
+  .entry-title{font-family:'Fraunces',serif;font-weight:500;font-size:1.1rem;margin:6px 0 8px;}
+  .entry-blurb{font-size:.88rem;color:#4c5854;line-height:1.5;margin-bottom:12px;}
+  .entry-link{font-size:.82rem;color:var(--clay);text-decoration:none;font-weight:500;}
+  .entry-link:hover{text-decoration:underline;}
+
+  .empty-state{
+    grid-column:1/-1;
+    border:1px dashed #c9b98d;border-radius:12px;
+    padding:48px 28px;text-align:center;color:#6b7a75;
+  }
+  .empty-state h3{font-family:'Fraunces',serif;font-weight:500;font-size:1.3rem;color:var(--navy);margin-bottom:8px;}
+  .empty-state p{max-width:440px;margin:0 auto;font-size:.92rem;line-height:1.5;}
+
+  footer{padding:32px 0 60px;text-align:center;font-size:.8rem;color:#8a978f;}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <a class="back" href="index.html">← Back to Have Less, Live More</a>
+    <div class="brand">Have Less, <em>Live More</em></div>
+  </header>
+
+  <section class="hero">
+    <span class="eyebrow">New every week</span>
+    <h1>The Vlog</h1>
+    <p class="sub">Short dispatches from wherever we are — a house we're staying in, a trail, a bad flight, a good meal. Posted weekly, mixed English and Spanish, same as the feed.</p>
+    <a class="follow" href="https://www.instagram.com/have_less_live_more" target="_blank" rel="noopener">📷 Follow along on Instagram →</a>
+  </section>
+
+  <div class="entries">
+    <!--
+      ENTRY TEMPLATE — duplicate this block for each new weekly post,
+      fill in the four fields, and place newest entries first.
+
+      <div class="entry-card">
+        <div class="entry-thumb"><img src="..." style="width:100%;height:100%;object-fit:cover;" alt="..."></div>
+        <div class="entry-body">
+          <div class="entry-date">Week of Month DD</div>
+          <div class="entry-title">Short title</div>
+          <p class="entry-blurb">One or two sentences on what happened this week.</p>
+          <a class="entry-link" href="INSTAGRAM_REEL_OR_YOUTUBE_URL" target="_blank" rel="noopener">Watch →</a>
+        </div>
+      </div>
+    -->
+
+    <div class="empty-state">
+      <h3>First dispatch coming soon</h3>
+      <p>Send me the photos or video link and a couple lines about the week — Florida, Rio, wherever — and I'll turn it into the first entry here.</p>
+    </div>
+  </div>
+
+  <footer>Have Less, Live More — weekly, wherever we are.</footer>
+</div>
+</body>
+</html>
