@@ -69,6 +69,25 @@
   }
   .cta:hover{background:var(--navy);}
 
+  .inline-inquiry{
+    margin-top:40px;padding:28px;background:#fff;border:1px solid #e6dac0;border-radius:14px;
+  }
+  .inline-inquiry h3{font-family:'Fraunces',serif;font-weight:500;font-size:1.3rem;margin-bottom:6px;}
+  .inline-inquiry p.sub2{color:#5c6b66;font-size:.88rem;margin-bottom:20px;}
+  .field-row2{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px;}
+  .inline-inquiry label{font-size:.75rem;text-transform:uppercase;letter-spacing:.06em;color:#5c6b66;display:block;margin-bottom:5px;}
+  .inline-inquiry input,.inline-inquiry textarea{
+    width:100%;padding:10px 12px;border:1px solid #d9cba8;border-radius:8px;
+    font-family:'Inter',sans-serif;font-size:.92rem;color:var(--navy);background:var(--paper);
+  }
+  .inline-inquiry textarea{resize:vertical;min-height:70px;}
+  .submit-btn2{
+    margin-top:6px;padding:13px 28px;border:none;border-radius:999px;
+    background:var(--clay);color:#fff;font-size:.95rem;font-weight:500;cursor:pointer;
+  }
+  .submit-btn2:hover{background:var(--navy);}
+  .confirm2{font-size:.9rem;color:var(--seafoam);margin-top:14px;display:none;}
+
   footer{padding:40px 0 20px;text-align:center;font-size:.8rem;color:#8a978f;}
 </style>
 </head>
@@ -102,7 +121,41 @@
     <span><span class="swatch busy"></span> Booked</span>
   </div>
 
-  <a class="cta" href="index.html#inquiry">Request These Dates →</a>
+  <a class="cta" href="index.html#inquiry" style="display:none;">Request These Dates →</a>
+
+  <div class="inline-inquiry">
+    <h3>Request These Dates</h3>
+    <p class="sub2">Send this straight to us — no need to leave this page.</p>
+
+    <form id="inline-form" onsubmit="return handleInlineSubmit(event);">
+      <div class="field-row2">
+        <div>
+          <label for="i-name">Name</label>
+          <input id="i-name" type="text" placeholder="Your name" required>
+        </div>
+        <div>
+          <label for="i-email">Email</label>
+          <input id="i-email" type="email" placeholder="you@example.com" required>
+        </div>
+      </div>
+      <div class="field-row2">
+        <div>
+          <label for="i-checkin">Check-in</label>
+          <input id="i-checkin" type="date" required>
+        </div>
+        <div>
+          <label for="i-checkout">Check-out</label>
+          <input id="i-checkout" type="date" required>
+        </div>
+      </div>
+      <div style="margin-bottom:14px;">
+        <label for="i-notes">Notes (optional)</label>
+        <textarea id="i-notes" placeholder="Number of guests, special requests, anything else we should know"></textarea>
+      </div>
+      <button type="submit" class="submit-btn2">Send Request →</button>
+      <p class="confirm2" id="i-confirm">Request received — we'll follow up by email shortly.</p>
+    </form>
+  </div>
 
   <footer>Have Less, Live More — availability synced automatically from Airbnb.</footer>
 </div>
@@ -175,6 +228,51 @@ fetch('availability.json')
   });
 
 document.getElementById('property-select').addEventListener('change', renderCalendar);
+
+// --- Inline inquiry form on the calendar page (same Formspree endpoint as the main site) ---
+const FORMSPREE_ENDPOINT = 'https://formspree.io/f/mnpqawzn';
+
+async function handleInlineSubmit(e) {
+  e.preventDefault();
+  var propertySelect = document.getElementById('property-select');
+  var propertyName = propertySelect.options[propertySelect.selectedIndex].text;
+  var btn = document.querySelector('.submit-btn2');
+  var confirmMsg = document.getElementById('i-confirm');
+
+  var payload = {
+    name: document.getElementById('i-name').value,
+    email: document.getElementById('i-email').value,
+    property: propertyName,
+    checkin: document.getElementById('i-checkin').value,
+    checkout: document.getElementById('i-checkout').value,
+    notes: document.getElementById('i-notes').value,
+    _subject: 'New inquiry from Availability page: ' + propertyName,
+  };
+
+  btn.disabled = true;
+  btn.textContent = 'Sending…';
+
+  try {
+    var res = await fetch(FORMSPREE_ENDPOINT, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify(payload),
+    });
+    if (!res.ok) throw new Error('failed');
+
+    document.getElementById('inline-form').reset();
+    btn.style.display = 'none';
+    confirmMsg.style.display = 'block';
+  } catch (err) {
+    btn.disabled = false;
+    btn.textContent = 'Send Request →';
+    confirmMsg.style.display = 'block';
+    confirmMsg.style.color = '#B5563A';
+    confirmMsg.textContent = 'Something went wrong — please try again, or email hello@havelesslivemore.com directly.';
+  }
+
+  return false;
+}
 </script>
 </body>
 </html>
