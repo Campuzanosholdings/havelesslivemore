@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Availability | Have Less, Live More</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;1,9..144,400&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#14282F; --sand:#F1E9D8; --clay:#B5563A;
+    --seafoam:#6E9C8F; --gold:#C79A46; --paper:#FBF8F2;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{background:var(--paper);color:var(--navy);font-family:'Inter',sans-serif;}
+  .wrap{max-width:900px;margin:0 auto;padding:28px 24px 60px;}
+
+  header{padding:20px 0 8px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;}
+  a.back{font-size:.85rem;color:var(--clay);text-decoration:none;}
+  a.back:hover{text-decoration:underline;}
+  .brand{font-family:'Fraunces',serif;font-weight:600;font-size:1.4rem;}
+  .brand em{font-style:italic;color:var(--clay);}
+
+  .hero{padding:30px 0 8px;}
+  .eyebrow{font-size:.78rem;text-transform:uppercase;letter-spacing:.14em;color:var(--seafoam);font-weight:600;}
+  h1{font-family:'Fraunces',serif;font-weight:500;font-size:clamp(1.8rem,4vw,2.6rem);margin:10px 0 14px;}
+  p.sub{color:#5c6b66;max-width:560px;font-size:.98rem;line-height:1.5;margin-bottom:24px;}
+
+  select{
+    padding:12px 16px;border:1px solid #d9cba8;border-radius:8px;
+    font-family:'Inter',sans-serif;font-size:.95rem;color:var(--navy);background:#fff;
+    margin-bottom:28px;width:100%;max-width:420px;
+  }
+
+  .cal-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;}
+  .cal-header button{
+    background:none;border:1px solid #d9cba8;border-radius:8px;padding:8px 14px;
+    cursor:pointer;font-size:.9rem;color:var(--navy);
+  }
+  .cal-header button:hover{background:#fff;}
+  .cal-header h2{font-family:'Fraunces',serif;font-weight:500;font-size:1.3rem;}
+
+  .cal-grid{
+    display:grid;grid-template-columns:repeat(7,1fr);gap:6px;
+  }
+  .cal-dow{
+    text-align:center;font-size:.72rem;text-transform:uppercase;letter-spacing:.05em;
+    color:#8a978f;padding-bottom:6px;
+  }
+  .cal-day{
+    aspect-ratio:1;display:flex;align-items:center;justify-content:center;
+    border-radius:8px;font-size:.88rem;font-family:'IBM Plex Mono',monospace;
+  }
+  .cal-day.empty{visibility:hidden;}
+  .cal-day.available{background:#e8f0ec;color:var(--navy);}
+  .cal-day.busy{background:#f1e3dc;color:#b08a7a;text-decoration:line-through;}
+  .cal-day.past{background:transparent;color:#d4cdbd;}
+
+  .legend{display:flex;gap:20px;margin-top:18px;font-size:.82rem;color:#5c6b66;}
+  .legend span{display:inline-flex;align-items:center;gap:6px;}
+  .swatch{width:14px;height:14px;border-radius:4px;display:inline-block;}
+  .swatch.available{background:#e8f0ec;}
+  .swatch.busy{background:#f1e3dc;}
+
+  .loading{color:#8a978f;font-size:.9rem;}
+  .cta{
+    display:inline-block;margin-top:28px;padding:12px 24px;border-radius:999px;
+    background:var(--clay);color:#fff;text-decoration:none;font-size:.9rem;font-weight:500;
+  }
+  .cta:hover{background:var(--navy);}
+
+  footer{padding:40px 0 20px;text-align:center;font-size:.8rem;color:#8a978f;}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <a class="back" href="index.html">← Have Less, Live More</a>
+    <div class="brand">Have Less, <em>Live More</em></div>
+  </header>
+
+  <section class="hero">
+    <span class="eyebrow">Updated every 3 hours from Airbnb</span>
+    <h1>Check Availability</h1>
+    <p class="sub">Pick a property below to see which dates are open. This calendar pulls directly from our live Airbnb booking data, so what you see here is accurate right now — not a guess.</p>
+  </section>
+
+  <select id="property-select">
+    <option value="sol-naciente">Casa del Sol Naciente — Ponte Vedra, FL</option>
+    <option value="luna-cresciente">Casa de Luna Cresciente — St. Augustine, FL</option>
+    <option value="miami-oasis">Casa del Encanto — Cutler Bay, FL</option>
+    <option value="copacabana-apt">Apartment on the Beach Block — Copacabana, Rio</option>
+    <option value="copacabana-studio">Studio on the Beach Block — Copacabana, Rio</option>
+  </select>
+
+  <div id="cal-container">
+    <p class="loading">Loading live availability…</p>
+  </div>
+
+  <div class="legend">
+    <span><span class="swatch available"></span> Available</span>
+    <span><span class="swatch busy"></span> Booked</span>
+  </div>
+
+  <a class="cta" href="index.html#inquiry">Request These Dates →</a>
+
+  <footer>Have Less, Live More — availability synced automatically from Airbnb.</footer>
+</div>
+
+<script>
+let availabilityData = null;
+let currentMonth = new Date();
+currentMonth.setDate(1);
+
+function isBusy(dateStr, busyRanges) {
+  return busyRanges.some(r => dateStr >= r.start && dateStr < r.end);
+}
+
+function toISO(d) {
+  return d.getFullYear() + '-' + String(d.getMonth()+1).padStart(2,'0') + '-' + String(d.getDate()).padStart(2,'0');
+}
+
+function renderCalendar() {
+  const container = document.getElementById('cal-container');
+  const slug = document.getElementById('property-select').value;
+  const property = availabilityData && availabilityData.properties[slug];
+  const busy = (property && property.busy) || [];
+
+  const year = currentMonth.getFullYear();
+  const month = currentMonth.getMonth();
+  const monthName = currentMonth.toLocaleString('en-US', { month: 'long', year: 'numeric' });
+  const firstDay = new Date(year, month, 1).getDay();
+  const daysInMonth = new Date(year, month + 1, 0).getDate();
+  const today = toISO(new Date());
+
+  let html = '<div class="cal-header">' +
+    '<button id="prev-month">← Prev</button>' +
+    '<h2>' + monthName + '</h2>' +
+    '<button id="next-month">Next →</button>' +
+    '</div><div class="cal-grid">';
+
+  ['Su','Mo','Tu','We','Th','Fr','Sa'].forEach(d => html += '<div class="cal-dow">' + d + '</div>');
+  for (let i = 0; i < firstDay; i++) html += '<div class="cal-day empty"></div>';
+
+  for (let day = 1; day <= daysInMonth; day++) {
+    const dateStr = year + '-' + String(month+1).padStart(2,'0') + '-' + String(day).padStart(2,'0');
+    let cls = 'available';
+    if (dateStr < today) cls = 'past';
+    else if (isBusy(dateStr, busy)) cls = 'busy';
+    html += '<div class="cal-day ' + cls + '">' + day + '</div>';
+  }
+
+  html += '</div>';
+  container.innerHTML = html;
+
+  document.getElementById('prev-month').addEventListener('click', () => {
+    currentMonth.setMonth(currentMonth.getMonth() - 1);
+    renderCalendar();
+  });
+  document.getElementById('next-month').addEventListener('click', () => {
+    currentMonth.setMonth(currentMonth.getMonth() + 1);
+    renderCalendar();
+  });
+}
+
+fetch('availability.json')
+  .then(r => r.ok ? r.json() : Promise.reject('not found'))
+  .then(data => {
+    availabilityData = data;
+    renderCalendar();
+  })
+  .catch(() => {
+    document.getElementById('cal-container').innerHTML =
+      '<p class="loading">Availability data isn\'t available right now — please check back shortly, or use the inquiry form and we\'ll confirm dates by hand.</p>';
+  });
+
+document.getElementById('property-select').addEventListener('change', renderCalendar);
+</script>
+</body>
+</html>
