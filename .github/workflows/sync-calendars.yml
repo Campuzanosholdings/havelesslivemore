@@ -1,0 +1,40 @@
+# Save this file as .github/workflows/sync-calendars.yml in your site's
+# GitHub repo. It re-runs the calendar merge every 3 hours and commits the
+# refreshed availability.json, so the live site always reflects recent
+# Airbnb/Vrbo/Booking.com bookings without you doing anything manually.
+
+name: Sync rental calendars
+
+on:
+  schedule:
+    - cron: '0 */3 * * *'   # every 3 hours
+  workflow_dispatch: {}       # lets you trigger it manually from the Actions tab
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Merge calendars
+        env:
+          ICAL_SOL_NACIENTE: ${{ secrets.ICAL_SOL_NACIENTE }}
+          ICAL_LUNA_CRESCIENTE: ${{ secrets.ICAL_LUNA_CRESCIENTE }}
+          ICAL_MIAMI_OASIS: ${{ secrets.ICAL_MIAMI_OASIS }}
+          ICAL_COPACABANA_APT: ${{ secrets.ICAL_COPACABANA_APT }}
+          ICAL_COPACABANA_STUDIO: ${{ secrets.ICAL_COPACABANA_STUDIO }}
+        run: node calendar-sync/merge-calendars.js calendar-sync/config.json availability.json
+
+      - name: Commit updated availability.json
+        run: |
+          git config user.name "calendar-sync-bot"
+          git config user.email "actions@github.com"
+          git add availability.json
+          git diff --cached --quiet || git commit -m "Sync rental calendars"
+          git push
