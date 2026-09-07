@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-07T03:17:33.699Z",
+  "generatedAt": "2026-09-07T06:24:29.412Z",
   "properties": {
     "sol-naciente": {
       "name": "Casa del Sol Naciente",
@@ -104,7 +104,11 @@
       "busy": [
         {
           "start": "2026-09-05",
-          "end": "2026-09-08"
+          "end": "2026-09-06"
+        },
+        {
+          "start": "2026-09-07",
+          "end": "2026-09-09"
         },
         {
           "start": "2026-10-23",
