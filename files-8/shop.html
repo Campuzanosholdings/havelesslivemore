@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Have Less, Live More — Shop</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#14282F;
+  --sand:#F1E9D8;
+  --sand-deep:#E6DAC0;
+  --clay:#B5563A;
+  --seafoam:#6E9C8F;
+  --gold:#C79A46;
+  --ink:#1B2B27;
+  --paper:#FBF8F2;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{
+  background:var(--paper);
+  color:var(--ink);
+  font-family:'Inter',sans-serif;
+  line-height:1.5;
+  -webkit-font-smoothing:antialiased;
+}
+a{color:inherit;text-decoration:none;}
+.mono{font-family:'IBM Plex Mono',monospace;letter-spacing:.02em;}
+.wrap{max-width:1180px;margin:0 auto;padding:0 28px;}
+
+/* ---- nav ---- */
+header{
+  position:sticky;top:0;z-index:50;
+  background:rgba(251,248,242,.92);
+  backdrop-filter:blur(8px);
+  border-bottom:1px solid rgba(20,40,47,.08);
+}
+nav{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:18px 28px;max-width:1180px;margin:0 auto;
+  gap:24px;flex-wrap:wrap;
+}
+.brand{
+  font-family:'Fraunces',serif;font-weight:600;font-size:1.6rem;
+  letter-spacing:.01em;white-space:nowrap;
+}
+.brand em{font-style:italic;color:var(--clay);}
+.navlinks{display:flex;gap:28px;font-size:.85rem;flex-wrap:wrap;}
+.navlinks a{opacity:.75;transition:opacity .15s;}
+.navlinks a:hover, .navlinks a.active{opacity:1;color:var(--clay);}
+.btn-primary{
+  background:var(--clay);color:var(--paper);
+  padding:10px 20px;border-radius:100px;font-size:.85rem;font-weight:500;
+  white-space:nowrap;
+}
+
+/* ---- shop hero ---- */
+.shop-hero{
+  padding:64px 0 40px;text-align:center;
+}
+.shop-hero .eyebrow{
+  color:var(--gold);font-size:.8rem;letter-spacing:.08em;text-transform:uppercase;
+  margin-bottom:14px;display:block;
+}
+.shop-hero h1{
+  font-family:'Fraunces',serif;font-weight:500;font-size:clamp(2.2rem,5vw,3.4rem);
+  line-height:1.15;max-width:760px;margin:0 auto 18px;
+}
+.shop-hero h1 em{font-style:italic;color:var(--clay);}
+.shop-hero p{
+  max-width:520px;margin:0 auto;color:rgba(27,43,39,.72);font-size:1.02rem;
+}
+
+/* ---- product grid ---- */
+.shop-grid{
+  display:grid;grid-template-columns:repeat(auto-fit, minmax(280px,1fr));
+  gap:36px;padding:20px 0 80px;
+}
+.product-card{
+  background:var(--sand);border-radius:20px;overflow:hidden;
+  border:1px solid rgba(20,40,47,.08);
+}
+.card-slideshow{
+  position:relative;aspect-ratio:4/5;overflow:hidden;background:var(--sand-deep);
+}
+.card-slideshow img{
+  position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+  opacity:0;transition:opacity .6s ease;
+}
+.card-slideshow img.active{opacity:1;}
+.product-info{padding:22px 22px 26px;}
+.product-info .tag{
+  font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;color:var(--seafoam);
+  display:block;margin-bottom:6px;
+}
+.product-info h3{
+  font-family:'Fraunces',serif;font-weight:500;font-size:1.25rem;margin-bottom:8px;
+}
+.product-info p.desc{
+  font-size:.92rem;color:rgba(27,43,39,.7);margin-bottom:16px;
+}
+.product-info .price-row{
+  display:flex;align-items:center;justify-content:space-between;
+}
+.price{font-family:'IBM Plex Mono',monospace;font-size:1.05rem;color:var(--ink);}
+.btn-shop{
+  background:var(--navy);color:var(--paper);
+  padding:9px 18px;border-radius:100px;font-size:.82rem;font-weight:500;
+}
+.btn-shop:hover{background:var(--clay);}
+
+/* ---- coming soon placeholder ---- */
+.coming-soon{
+  border:1.5px dashed rgba(20,40,47,.2);border-radius:20px;
+  display:flex;align-items:center;justify-content:center;
+  min-height:340px;padding:30px;text-align:center;
+  color:rgba(27,43,39,.5);font-size:.92rem;
+}
+
+footer{
+  border-top:1px solid rgba(20,40,47,.08);padding:36px 0;text-align:center;
+  font-size:.82rem;color:rgba(27,43,39,.6);
+}
+
+@media(max-width:640px){
+  .navlinks{display:none;}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <nav class="wrap">
+    <a href="index.html" class="brand">Have Less, <em>Live More</em></a>
+    <div class="navlinks">
+      <a href="index.html">Home</a>
+      <a href="shop.html" class="active">Shop</a>
+      <a href="index.html#contact">Contact</a>
+    </div>
+    <a href="https://instagram.com/have_less__live_more" target="_blank" rel="noopener" class="btn-primary">Follow →</a>
+  </nav>
+</header>
+
+<section class="shop-hero wrap">
+  <span class="eyebrow mono">The Collection</span>
+  <h1>Wear the reminder: <em>have less, live more.</em></h1>
+  <p>Small-batch shirts and caps made for people who'd rather be at the coast than checking a to-do list.</p>
+</section>
+
+<section class="shop-grid wrap">
+
+  <div class="product-card">
+    <div class="card-slideshow">
+      <img src="shop-images/shop-fillblank-lifestyle.jpg" class="active" alt="Fill the blank tee, lifestyle shot">
+      <img src="shop-images/shop-fillblank-shirt.jpg" alt="Fill the blank tee, flat lay">
+      <img src="shop-images/shop-fillblank-cap.jpg" alt="Fill the blank cap">
+    </div>
+    <div class="product-info">
+      <span class="tag">Tee + Cap Set</span>
+      <h3>"Fill the Blank" Tee</h3>
+      <p class="desc">Sand-colored tee with the brand's signature line on the back, plus the matching clay dad cap.</p>
+      <div class="price-row">
+        <span class="price">$—</span>
+        <a href="mailto:campuzanosholdings@gmail.com?subject=Have%20Less%20Live%20More%20-%20Fill%20the%20Blank%20Tee" class="btn-shop">Inquire</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="product-card">
+    <div class="card-slideshow">
+      <img src="shop-images/shop-imliving-lifestyle.jpg" class="active" alt="I'm Living tee, lifestyle shot">
+      <img src="shop-images/shop-imliving-shirt.jpg" alt="I'm Living tee, flat lay">
+      <img src="shop-images/shop-imliving-cap.jpg" alt="I'm Living cap">
+    </div>
+    <div class="product-info">
+      <span class="tag">Tee + Cap Set</span>
+      <h3>"I'm Living" Tee</h3>
+      <p class="desc">A quiet flex for the ones who stopped waiting. Sand tee, clay cap, same easy fit.</p>
+      <div class="price-row">
+        <span class="price">$—</span>
+        <a href="mailto:campuzanosholdings@gmail.com?subject=Have%20Less%20Live%20More%20-%20I%27m%20Living%20Tee" class="btn-shop">Inquire</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="coming-soon">
+    More pieces dropping soon —<br>follow @have_less__live_more for the first look.
+  </div>
+
+</section>
+
+<footer class="wrap">
+  Have Less, Live More · <a href="mailto:campuzanosholdings@gmail.com">campuzanosholdings@gmail.com</a>
+</footer>
+
+<script>
+document.querySelectorAll('.card-slideshow').forEach(function(slideshow){
+  var slides = slideshow.querySelectorAll('img');
+  var current = 0;
+  if (slides.length < 2) return;
+  setInterval(function(){
+    slides[current].classList.remove('active');
+    current = (current + 1) % slides.length;
+    slides[current].classList.add('active');
+  }, 3500);
+});
+</script>
+
+</body>
+</html>
