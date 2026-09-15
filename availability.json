@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-15T18:18:09.518Z",
+  "generatedAt": "2026-09-15T21:15:54.664Z",
   "properties": {
     "sol-naciente": {
       "name": "Casa del Sol Naciente",
@@ -46,16 +46,12 @@
       "name": "Casa de Luna Cresciente",
       "busy": [
         {
-          "start": "2026-09-19",
-          "end": "2026-09-22"
-        },
-        {
           "start": "2026-10-03",
           "end": "2026-10-09"
         },
         {
           "start": "2026-11-21",
-          "end": "2026-11-28"
+          "end": "2026-11-30"
         },
         {
           "start": "2026-12-23",
