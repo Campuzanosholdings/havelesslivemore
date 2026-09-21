@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-21T15:15:37.768Z",
+  "generatedAt": "2026-09-21T18:19:11.173Z",
   "properties": {
     "sol-naciente": {
       "name": "Casa del Sol Naciente",
@@ -43,6 +43,10 @@
         {
           "start": "2027-06-20",
           "end": "2027-06-27"
+        },
+        {
+          "start": "2027-07-31",
+          "end": "2027-08-07"
         }
       ]
     },
