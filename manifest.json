@@ -1,0 +1,20 @@
+{
+  "name": "Have Less, Live More",
+  "short_name": "Have Less",
+  "description": "Family-run coastal stays in Florida and Rio de Janeiro. Book direct.",
+  "start_url": "/?source=app",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#FBF8F2",
+  "theme_color": "#FBF8F2",
+  "icons": [
+    { "src": "/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ],
+  "shortcuts": [
+    { "name": "Guest guide", "url": "/guide.html", "icons": [{ "src": "/icon-192.png", "sizes": "192x192" }] },
+    { "name": "Book a stay", "url": "/#inquiry", "icons": [{ "src": "/icon-192.png", "sizes": "192x192" }] },
+    { "name": "Contact us", "url": "/contact.html", "icons": [{ "src": "/icon-192.png", "sizes": "192x192" }] }
+  ]
+}

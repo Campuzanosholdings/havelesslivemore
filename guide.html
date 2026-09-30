@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-W3SLWQP64X"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag("js", new Date());
+  gtag("config", "G-W3SLWQP64X");
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#FBF8F2">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Have Less">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<title>Guest Guide — Have Less, Live More</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#14282F; --sand:#F1E9D8; --sand-deep:#E6DAC0; --clay:#B5563A;
+    --seafoam:#6E9C8F; --gold:#C79A46; --ink:#1B2B27; --paper:#FBF8F2;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{background:var(--paper);color:var(--ink);font-family:'Inter',sans-serif;line-height:1.5;-webkit-font-smoothing:antialiased;padding-bottom:calc(84px + env(safe-area-inset-bottom,0px));}
+  a{color:inherit;text-decoration:none;}
+  button{font:inherit;color:inherit;}
+
+  header{position:sticky;top:0;z-index:50;background:rgba(251,248,242,.94);backdrop-filter:blur(8px);border-bottom:1px solid rgba(20,40,47,.08);padding-top:env(safe-area-inset-top,0px);}
+  .bar{max-width:760px;margin:0 auto;padding:14px 20px;display:flex;align-items:center;justify-content:space-between;gap:12px;}
+  .brand{font-family:'Fraunces',serif;font-weight:600;font-size:1.3rem;white-space:nowrap;}
+  .brand em{font-style:italic;color:var(--clay);}
+  .lang-switch{display:inline-flex;border:1px solid rgba(20,40,47,.2);border-radius:20px;overflow:hidden;font-family:'IBM Plex Mono',monospace;font-size:.72rem;letter-spacing:.08em;}
+  .lang-switch button{background:transparent;border:0;padding:6px 11px;cursor:pointer;}
+  .lang-switch button.on{background:var(--navy);color:var(--paper);}
+
+  .picker{max-width:760px;margin:0 auto;padding:0 20px 12px;display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;}
+  .picker::-webkit-scrollbar{display:none;}
+  .chip{flex-shrink:0;border:1px solid rgba(20,40,47,.2);background:transparent;border-radius:20px;padding:7px 14px;font-size:.82rem;cursor:pointer;white-space:nowrap;}
+  .chip.on{background:var(--clay);border-color:var(--clay);color:var(--paper);}
+
+  main{max-width:760px;margin:0 auto;padding:22px 20px 40px;}
+  .hero{background:var(--navy);color:var(--sand);border-radius:16px;padding:24px 22px;margin-bottom:22px;position:relative;overflow:hidden;}
+  .hero .where{font-family:'IBM Plex Mono',monospace;font-size:.74rem;text-transform:uppercase;letter-spacing:.12em;color:var(--gold);}
+  .hero h1{font-family:'Fraunces',serif;font-weight:500;font-size:clamp(1.7rem,6vw,2.3rem);line-height:1.1;margin:8px 0 6px;}
+  .hero p{font-size:.92rem;color:#d8e2dd;max-width:44ch;}
+  .hero svg{position:absolute;right:-20px;bottom:-24px;width:160px;opacity:.14;}
+
+  h2.sec{font-family:'Fraunces',serif;font-weight:500;font-size:1.35rem;margin:26px 0 12px;}
+  h2.sec:first-child{margin-top:0;}
+  .intro{font-size:.9rem;color:#4d5c57;margin:-4px 0 14px;}
+
+  .facts{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+  @media(max-width:480px){.facts{grid-template-columns:1fr;}}
+  .fact{background:var(--sand);border-radius:12px;padding:14px 16px;}
+  .fact .k{font-size:.72rem;text-transform:uppercase;letter-spacing:.1em;color:var(--clay);margin-bottom:3px;}
+  .fact .v{font-size:.92rem;}
+
+  .card{background:#fff;border:1px solid var(--sand-deep);border-radius:14px;padding:16px 18px;margin-bottom:10px;display:block;}
+  .card h3{font-family:'Fraunces',serif;font-weight:500;font-size:1.08rem;margin-bottom:3px;}
+  .card p{font-size:.88rem;color:#4c5854;}
+  .card .meta{font-family:'IBM Plex Mono',monospace;font-size:.72rem;color:var(--seafoam);text-transform:uppercase;letter-spacing:.06em;margin-bottom:4px;}
+  .card.link{position:relative;padding-right:44px;}
+  .card.link::after{content:"→";position:absolute;right:18px;top:50%;transform:translateY(-50%);color:var(--clay);font-size:1.1rem;}
+  .card.link:active{background:var(--sand);}
+  ul.rules{list-style:none;}
+  ul.rules li{padding:10px 0 10px 18px;border-bottom:1px solid rgba(20,40,47,.08);font-size:.9rem;position:relative;}
+  ul.rules li::before{content:"—";position:absolute;left:0;color:var(--seafoam);}
+  .callout{background:#fff4ec;border:1px solid #e9c9b3;border-radius:12px;padding:14px 16px;font-size:.88rem;color:#6b3a24;margin:14px 0;}
+  .callout.calm{background:#eef4f1;border-color:#c5dbd2;color:#2f4f45;}
+  .btns{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+  @media(max-width:420px){.btns{grid-template-columns:1fr;}}
+  .btn{display:flex;align-items:center;justify-content:center;gap:8px;text-align:center;padding:13px 14px;border-radius:12px;font-size:.88rem;font-weight:500;border:1px solid rgba(20,40,47,.2);background:#fff;}
+  .btn.primary{background:var(--navy);color:var(--sand);border-color:var(--navy);}
+  .btn.danger{background:var(--clay);color:#fff;border-color:var(--clay);}
+
+  nav.tabs{position:fixed;left:0;right:0;bottom:0;z-index:60;background:rgba(251,248,242,.97);backdrop-filter:blur(8px);border-top:1px solid rgba(20,40,47,.1);padding-bottom:env(safe-area-inset-bottom,0px);}
+  nav.tabs .in{max-width:760px;margin:0 auto;display:grid;grid-template-columns:repeat(5,1fr);}
+  nav.tabs button{background:transparent;border:0;padding:9px 2px 10px;display:flex;flex-direction:column;align-items:center;gap:3px;font-size:.68rem;color:#6b7b76;cursor:pointer;}
+  nav.tabs button svg{width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;}
+  nav.tabs button.on{color:var(--clay);font-weight:600;}
+  .foot{text-align:center;font-size:.78rem;color:#7c8a85;margin-top:34px;}
+  .foot a{text-decoration:underline;}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="bar">
+    <a class="brand" href="index.html">Have Less, <em>Live More</em></a>
+    <div class="lang-switch" role="group" aria-label="Language"><button data-lang="en">EN</button><button data-lang="es">ES</button><button data-lang="pt">PT</button></div>
+  </div>
+  <div class="picker" id="picker"></div>
+</header>
+
+<main id="view"></main>
+
+<nav class="tabs" aria-label="Guide sections"><div class="in" id="tabs"></div></nav>
+
+<script>
+/* =====================================================================
+   GUEST GUIDE CONTENT
+   Every text is written as [English, Español, Português].
+   To add a restaurant, copy one of the "eat" cards and change the text.
+   Do NOT put door codes or Wi-Fi passwords here — this page is public.
+   ===================================================================== */
+function maps(q){ return 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(q); }
+
+var UI = {
+  title:      ['Guest Guide','Guía del huésped','Guia do hóspede'],
+  home:       ['Home','Casa','Casa'],
+  todo:       ['Do','Planes','Passeios'],
+  eat:        ['Eat','Comer','Comer'],
+  deliver:    ['Delivery','Domicilios','Delivery'],
+  help:       ['Help','Ayuda','Ajuda'],
+  basics:     ['The basics','Lo básico','O básico'],
+  rulesH:     ['House notes','Notas de la casa','Regras da casa'],
+  privateNote:['Your door code, Wi-Fi and exact check-in details are sent privately by email a few days before arrival.','Tu código de entrada, el Wi-Fi y los detalles de llegada te llegan en privado por correo unos días antes.','Seu código de entrada, o Wi-Fi e os detalhes do check-in chegam em particular por e-mail alguns dias antes.'],
+  todoH:      ['Things to do nearby','Qué hacer cerca','O que fazer por perto'],
+  eatH:       ['Where to eat','Dónde comer','Onde comer'],
+  eatIntro:   ['Tap a category to see what\'s open near the house right now.','Toca una categoría para ver qué hay abierto cerca de la casa ahora.','Toque uma categoria para ver o que está aberto perto da casa agora.'],
+  favH:       ['Our family\'s favorites','Los favoritos de nuestra familia','Os favoritos da nossa família'],
+  favNote:    ['Want a personal recommendation? Message us — we love sharing our spots.','¿Quieres una recomendación personal? Escríbenos — nos encanta compartir nuestros lugares.','Quer uma dica pessoal? Mande uma mensagem — adoramos compartilhar nossos lugares.'],
+  delH:       ['Delivered to the door','A domicilio','Entrega em casa'],
+  delIntro:   ['Food, groceries and rides — use the house address from your booking email.','Comida, mercado y transporte — usa la dirección de la casa que te enviamos por correo.','Comida, mercado e transporte — use o endereço da casa enviado no e-mail da reserva.'],
+  essH:       ['Essentials nearby','Lo esencial cerca','O essencial por perto'],
+  helpH:      ['Help & emergencies','Ayuda y emergencias','Ajuda e emergências'],
+  contactH:   ['Contact your hosts','Contacta a tus anfitriones','Fale com seus anfitriões'],
+  email:      ['Email us','Escríbenos','Mande um e-mail'],
+  contactPg:  ['Contact page','Página de contacto','Página de contato'],
+  openMaps:   ['Open in maps','Abrir en mapas','Abrir no mapa'],
+  foot:       ['Made with care by our family.','Hecho con cariño por nuestra familia.','Feito com carinho pela nossa família.'],
+  back:       ['Back to the website','Volver a la página','Voltar ao site'],
+  welcomeBook:['Full Welcome Book (PDF)','Welcome Book completo (PDF)','Welcome Book completo (PDF)']
+};
+
+var FL_DELIVERY = [
+  { t:'DoorDash', d:['Restaurant delivery','Comida a domicilio','Comida em casa'], u:'https://www.doordash.com/' },
+  { t:'Uber Eats', d:['Restaurant & grocery delivery','Comida y mercado a domicilio','Comida e mercado em casa'], u:'https://www.ubereats.com/' },
+  { t:'Instacart', d:['Groceries from local supermarkets','Mercado de supermercados locales','Compras de supermercados locais'], u:'https://www.instacart.com/' },
+  { t:'Uber / Lyft', d:['Rides around town','Transporte por la ciudad','Corridas pela cidade'], u:'https://www.uber.com/' }
+];
+var RIO_DELIVERY = [
+  { t:'iFood', d:['Brazil\'s main food delivery app','La app de comida a domicilio más usada en Brasil','O principal app de delivery do Brasil'], u:'https://www.ifood.com.br/' },
+  { t:'Rappi', d:['Food, market and pharmacy','Comida, mercado y farmacia','Comida, mercado e farmácia'], u:'https://www.rappi.com.br/' },
+  { t:'Uber', d:['Rides around the city','Transporte por la ciudad','Corridas pela cidade'], u:'https://www.uber.com/br/' },
+  { t:'99', d:['Popular local ride app','App de transporte local muy usada','App de corridas bem popular no Rio'], u:'https://99app.com/' }
+];
+var US_HELP = [
+  { t:['Emergency: 911','Emergencia: 911','Emergência: 911'], d:['Police, fire or ambulance. Call first, then let us know.','Policía, bomberos o ambulancia. Llama primero y luego avísanos.','Polícia, bombeiros ou ambulância. Ligue primeiro e depois nos avise.'], u:'tel:911', danger:true }
+];
+var BR_HELP = [
+  { t:['Ambulance (SAMU): 192','Ambulancia (SAMU): 192','Ambulância (SAMU): 192'], d:['Medical emergencies','Emergencias médicas','Emergências médicas'], u:'tel:192', danger:true },
+  { t:['Police: 190','Policía: 190','Polícia: 190'], d:['Military Police','Policía Militar','Polícia Militar'], u:'tel:190', danger:true },
+  { t:['Fire department: 193','Bomberos: 193','Bombeiros: 193'], d:['Fire and rescue','Incendios y rescate','Incêndio e resgate'], u:'tel:193', danger:true },
+  { t:['Tourist Police (DEAT)','Policía turística (DEAT)','Delegacia do Turista (DEAT)'], d:['Help for visitors, in Leblon','Atención a turistas, en Leblon','Atendimento a turistas, no Leblon'], u:maps('Delegacia Especial de Apoio ao Turismo Leblon Rio de Janeiro') }
+];
+
+var STAUG_TODO = function(extra){ return extra.concat([
+  { t:'Castillo de San Marcos', m:['History','Historia','História'], d:['The oldest masonry fort in the continental U.S., right on St. Augustine\'s bayfront.','El fuerte de mampostería más antiguo de EE. UU. continental, frente a la bahía de St. Augustine.','O forte de alvenaria mais antigo dos EUA continentais, na orla de St. Augustine.'], q:'Castillo de San Marcos St. Augustine' },
+  { t:['Historic Downtown & St. George St.','Centro histórico y St. George St.','Centro histórico e St. George St.'], m:['Walk','Paseo','Passeio'], d:['Cobblestone streets, centuries-old architecture and great restaurants on every block.','Calles empedradas, arquitectura de siglos y buenos restaurantes en cada cuadra.','Ruas de paralelepípedo, arquitetura centenária e ótimos restaurantes em cada quadra.'], q:'St. George Street St. Augustine' },
+  { t:'St. Augustine Lighthouse', m:['Views','Vistas','Vista'], d:['Climb the historic lighthouse for a view over the whole coast.','Sube al faro histórico para ver toda la costa.','Suba no farol histórico e veja todo o litoral.'], q:'St. Augustine Lighthouse & Maritime Museum' },
+  { t:'St. Augustine Alligator Farm', m:['Family','Familia','Família'], d:['A classic with alligators, birds and zip lines — kids love it.','Un clásico con caimanes, aves y tirolesas — a los niños les encanta.','Um clássico com jacarés, aves e tirolesa — as crianças adoram.'], q:'St. Augustine Alligator Farm Zoological Park' },
+  { t:['Nights of Lights (Nov–Jan)','Nights of Lights (nov–ene)','Nights of Lights (nov–jan)'], m:['Season','Temporada','Temporada'], d:['Millions of white lights across downtown every winter. Free and best on foot.','Millones de luces blancas en el centro cada invierno. Gratis y mejor a pie.','Milhões de luzes brancas no centro todo inverno. Grátis e melhor a pé.'], q:'St. Augustine Nights of Lights' }
+]); };
+
+var P = [
+ {
+  id:'sol', name:'Casa del Sol Naciente', short:'Sol Naciente',
+  where:['Ponte Vedra, FL · Oceanfront','Ponte Vedra, FL · Frente al mar','Ponte Vedra, FL · Pé na areia'],
+  tag:['House of the Rising Sun — sunrise over the Atlantic from the deck.','Casa del Sol Naciente — el amanecer sobre el Atlántico desde la terraza.','Casa do Sol Nascente — o nascer do sol no Atlântico visto do deck.'],
+  facts:[
+   [['Guests','Huéspedes','Hóspedes'], ['Up to 12','Hasta 12','Até 12']],
+   [['Bedrooms','Habitaciones','Quartos'], ['4 bedrooms · 8 beds · 3.5 baths','4 hab. · 8 camas · 3.5 baños','4 quartos · 8 camas · 3,5 banheiros']],
+   [['Beach','Playa','Praia'], ['Direct access from the deck','Acceso directo desde la terraza','Acesso direto pelo deck']],
+   [['Beach gear','Equipo de playa','Equipamento de praia'], ['Included','Incluido','Incluído']]
+  ],
+  rules:[
+   ['Two living rooms, a fireplace and a hand-painted piano — please treat them gently.','Dos salas, chimenea y un piano pintado a mano — trátalos con cariño.','Duas salas, lareira e um piano pintado à mão — cuide deles com carinho.'],
+   ['Rinse sand off at the deck before coming inside.','Quítate la arena en la terraza antes de entrar.','Tire a areia no deck antes de entrar.'],
+   ['Don\'t miss the second-floor "rattan room" — our guests\' favorite corner.','No te pierdas el "cuarto de ratán" del segundo piso — el rincón favorito de los huéspedes.','Não perca o "quarto de rattan" no segundo andar — o cantinho favorito dos hóspedes.']
+  ],
+  todo: STAUG_TODO([
+   { t:'GTM Research Reserve', m:['Nature','Naturaleza','Natureza'], d:['Trails, dunes and quiet beach just up the coast in Ponte Vedra.','Senderos, dunas y playa tranquila en Ponte Vedra, muy cerca.','Trilhas, dunas e praia tranquila em Ponte Vedra, bem perto.'], q:'Guana Tolomato Matanzas National Estuarine Research Reserve' },
+   { t:'Vilano Beach Pier', m:['Beach','Playa','Praia'], d:['Sunset walks and fishing at the south end of Ponte Vedra.','Atardeceres y pesca en el extremo sur de Ponte Vedra.','Pôr do sol e pesca no extremo sul de Ponte Vedra.'], q:'Vilano Beach Pier' },
+   { t:'TPC Sawgrass', m:['Golf','Golf','Golfe'], d:['Home of THE PLAYERS Championship and its famous island green.','Sede de THE PLAYERS Championship y su famoso green en la isla.','Casa do THE PLAYERS Championship e seu famoso green na ilha.'], q:'TPC Sawgrass Ponte Vedra Beach' }
+  ]),
+  area:'Ponte Vedra Beach FL', coffeeQ:'coffee breakfast Ponte Vedra Beach FL', seaQ:'seafood restaurant Vilano Beach FL',
+  delivery:FL_DELIVERY, emerg:US_HELP, pharmacy:'pharmacy near Ponte Vedra Beach FL', grocery:'supermarket near Ponte Vedra Beach FL', hospital:'hospital emergency room near Ponte Vedra Beach FL'
+ },
+ {
+  id:'luna', name:'Casa de Luna Creciente', short:'Luna Creciente',
+  where:['Crescent Beach · St. Augustine, FL','Crescent Beach · St. Augustine, FL','Crescent Beach · St. Augustine, FL'],
+  tag:['House of the Crescent Moon — a gated beachfront townhouse with a pool open all year.','Casa de la Luna Creciente — casa en conjunto cerrado frente al mar, con piscina todo el año.','Casa da Lua Crescente — sobrado em condomínio fechado de frente para o mar, com piscina o ano todo.'],
+  facts:[
+   [['Guests','Huéspedes','Hóspedes'], ['Up to 7','Hasta 7','Até 7']],
+   [['Bedrooms','Habitaciones','Quartos'], ['3 bedrooms · 5 beds · 2.5 baths','3 hab. · 5 camas · 2.5 baños','3 quartos · 5 camas · 2,5 banheiros']],
+   [['Beach','Playa','Praia'], ['Private access steps from the complex','Acceso privado a pasos del conjunto','Acesso privativo a passos do condomínio']],
+   [['Pool','Piscina','Piscina'], ['Shared, open all year + grill area','Compartida, todo el año + parrilla','Compartilhada, o ano todo + churrasqueira']]
+  ],
+  rules:[
+   ['This is a shared community — please follow the complex\'s pool and grill rules and keep noise low.','Es una comunidad compartida — sigue las reglas de la piscina y la parrilla del conjunto y mantén el ruido bajo.','É um condomínio compartilhado — siga as regras da piscina e da churrasqueira e mantenha o barulho baixo.'],
+   ['Keep the complex gates closed behind you.','Mantén cerradas las rejas del conjunto.','Mantenha os portões do condomínio fechados.'],
+   ['Rinse sand off before coming inside.','Quítate la arena antes de entrar.','Tire a areia antes de entrar.']
+  ],
+  todo: STAUG_TODO([
+   { t:'Fort Matanzas', m:['History','Historia','História'], d:['A free little ferry takes you to a 1740 Spanish fort, just south of the house.','Un pequeño ferry gratis te lleva a un fuerte español de 1740, al sur de la casa.','Uma balsa gratuita leva a um forte espanhol de 1740, ao sul da casa.'], q:'Fort Matanzas National Monument' },
+   { t:'Anastasia State Park', m:['Nature','Naturaleza','Natureza'], d:['Wide beaches, dunes and a lagoon that\'s great for kayaking.','Playas amplias, dunas y una laguna ideal para kayak.','Praias largas, dunas e uma lagoa ótima para caiaque.'], q:'Anastasia State Park St. Augustine' },
+   { t:'Marineland Dolphin Adventure', m:['Family','Familia','Família'], d:['Meet dolphins a short drive south along A1A.','Conoce delfines a poca distancia al sur por la A1A.','Conheça golfinhos a uma curta viagem ao sul pela A1A.'], q:'Marineland Dolphin Adventure' }
+  ]),
+  area:'Crescent Beach St. Augustine FL', coffeeQ:'coffee breakfast St. Augustine Beach FL', seaQ:'seafood restaurant St. Augustine Beach FL',
+  delivery:FL_DELIVERY, emerg:US_HELP, pharmacy:'pharmacy near St. Augustine Beach FL', grocery:'supermarket near St. Augustine Beach FL', hospital:'hospital emergency room St. Augustine FL'
+ },
+ {
+  id:'encanto', name:'Casa del Encanto', short:'Encanto',
+  where:['Cutler Bay, FL · Near Biscayne Bay','Cutler Bay, FL · Cerca de Biscayne Bay','Cutler Bay, FL · Perto de Biscayne Bay'],
+  tag:['Our family home — heated saltwater pool, tiki hut and cafecito. Find your encanto.','Nuestra casa familiar — piscina climatizada de agua salada, tiki hut y cafecito. Encuentra tu encanto.','Nossa casa de família — piscina aquecida de água salgada, quiosque tiki e cafezinho. Encontre seu encanto.'],
+  facts:[
+   [['Guests','Huéspedes','Hóspedes'], ['Up to 7 overnight','Hasta 7 para dormir','Até 7 pernoitando']],
+   [['Parking','Parqueo','Estacionamento'], ['In the driveway','En la entrada de la casa','Na entrada da garagem']],
+   [['Garbage','Basura','Lixo'], ['Tuesday & Friday','Martes y viernes','Terça e sexta']],
+   [['Recycling','Reciclaje','Reciclagem'], ['Tue & Fri, every other week','Mar y vie, cada dos semanas','Ter e sex, semana sim, semana não']],
+   [['Pool service','Servicio de piscina','Manutenção da piscina'], ['Wednesdays','Miércoles','Quartas-feiras']],
+   [['Pool towels','Toallas de piscina','Toalhas de piscina'], ['Striped towels, hall closet','Rayadas, en el clóset del pasillo','Listradas, no armário do corredor']]
+  ],
+  rules:[
+   ['Heated saltwater pool, no lifeguard: always supervise children and keep the child-safety enclosure closed and in place.','Piscina climatizada de agua salada sin salvavidas: supervisa siempre a los niños y mantén cerrada la cerca de seguridad.','Piscina aquecida de água salgada sem salva-vidas: supervisione sempre as crianças e mantenha a cerca de segurança fechada.'],
+   ['Pavers get very slippery when wet — no running, wear good footwear.','Los adoquines se ponen muy resbalosos mojados — no correr y usa buen calzado.','O piso externo fica muito escorregadio molhado — não corra e use calçado adequado.'],
+   ['No glass, no diving, and please don\'t add chlorine or anything else to the pool.','Nada de vidrio, no clavados, y no agregues cloro ni nada a la piscina.','Nada de vidro, não mergulhe de cabeça e não adicione cloro nem nada à piscina.'],
+   ['Non-smoking and non-vaping home. No parties or events — our neighbors live here full-time.','Casa libre de humo y vapeo. No fiestas ni eventos — nuestros vecinos viven aquí todo el año.','Casa livre de cigarro e vape. Sem festas ou eventos — nossos vizinhos moram aqui o ano todo.'],
+   ['Up to 2 dogs with approval. Keep gates closed and dogs off furniture.','Hasta 2 perros con aprobación. Mantén las rejas cerradas y los perros fuera de los muebles.','Até 2 cães com aprovação. Mantenha os portões fechados e os cães fora dos móveis.'],
+   ['Please clean the espresso steam wand after every cafecito.','Limpia la boquilla de vapor de la cafetera después de cada cafecito.','Limpe o bico de vapor da máquina de espresso depois de cada cafezinho.'],
+   ['The piano and hand-painted artwork are irreplaceable family pieces — please look, don\'t touch.','El piano y los cuadros pintados a mano son piezas familiares irremplazables — mirar sin tocar.','O piano e os quadros pintados à mão são peças de família insubstituíveis — olhe sem tocar.'],
+   ['Hurricane season: if authorities order an evacuation, it is mandatory.','Temporada de huracanes: si las autoridades ordenan evacuar, es obligatorio.','Temporada de furacões: se as autoridades ordenarem evacuação, ela é obrigatória.']
+  ],
+  book:'casa-del-encanto-welcome-book.pdf',
+  todo:[
+   { t:'Black Point Park & Marina', m:['Water','Agua','Mar'], d:['Waterfront walks, boat ramps and sunsets over Biscayne Bay, minutes away.','Paseos junto al agua, rampas de botes y atardeceres sobre Biscayne Bay, a minutos.','Passeios à beira-mar, rampas de barco e pôr do sol em Biscayne Bay, a poucos minutos.'], q:'Black Point Park and Marina Cutler Bay' },
+   { t:'Biscayne National Park', m:['Nature','Naturaleza','Natureza'], d:['Mostly underwater park — paddling, boat tours and snorkeling.','Parque casi todo bajo el agua — kayak, paseos en bote y snorkel.','Parque quase todo submerso — caiaque, passeios de barco e snorkel.'], q:'Dante Fascell Visitor Center Biscayne National Park' },
+   { t:'Everglades National Park', m:['Nature','Naturaleza','Natureza'], d:['Alligators, birds and boardwalk trails — the Homestead entrance is a short drive.','Caimanes, aves y senderos en pasarelas — la entrada de Homestead queda cerca.','Jacarés, aves e trilhas em passarelas — a entrada de Homestead fica perto.'], q:'Everglades National Park Ernest F. Coe Visitor Center' },
+   { t:'Zoo Miami', m:['Family','Familia','Família'], d:['One of the country\'s biggest zoos, great for a full family day.','Uno de los zoológicos más grandes del país, ideal para un día en familia.','Um dos maiores zoológicos do país, ótimo para um dia em família.'], q:'Zoo Miami' },
+   { t:'Deering Estate', m:['History','Historia','História'], d:['Historic bayfront estate with nature trails and events.','Finca histórica frente a la bahía con senderos y eventos.','Propriedade histórica à beira da baía com trilhas e eventos.'], q:'Deering Estate Palmetto Bay' },
+   { t:'Robert Is Here Fruit Stand', m:['Local classic','Clásico local','Clássico local'], d:['Famous tropical-fruit milkshakes on the way to the Keys.','Famosas malteadas de frutas tropicales camino a los Cayos.','Famosos milk-shakes de frutas tropicais a caminho das Keys.'], q:'Robert Is Here Fruit Stand Homestead' },
+   { t:['South Beach & the Keys','South Beach y los Cayos','South Beach e as Keys'], m:['Day trip','Paseo de un día','Bate-volta'], d:['South Beach is about 45 minutes north; Key Largo is an easy drive south.','South Beach queda a unos 45 minutos al norte; Key Largo, un viaje fácil al sur.','South Beach fica a uns 45 minutos ao norte; Key Largo é uma viagem fácil ao sul.'], q:'Key Largo FL' }
+  ],
+  area:'Cutler Bay FL', coffeeQ:'cafecito Cuban coffee bakery Cutler Bay FL', seaQ:'seafood restaurant Cutler Bay Palmetto Bay FL',
+  delivery:FL_DELIVERY, emerg:US_HELP, pharmacy:'pharmacy near Cutler Bay FL', grocery:'supermarket near Cutler Bay FL', hospital:'hospital emergency room near Cutler Bay FL'
+ },
+ {
+  id:'copa', name:['Copacabana Apartment','Apartamento Copacabana','Apartamento Copacabana'], short:['Copacabana Apt.','Apto. Copacabana','Apto. Copacabana'],
+  where:['Copacabana, Rio · Between Postos 5 & 6','Copacabana, Río · Entre los Postos 5 y 6','Copacabana, Rio · Entre os Postos 5 e 6'],
+  tag:['One block from the world\'s most famous beach.','A una cuadra de la playa más famosa del mundo.','A uma quadra da praia mais famosa do mundo.'],
+  facts:[
+   [['Guests','Huéspedes','Hóspedes'], ['Up to 6','Hasta 6','Até 6']],
+   [['Bedrooms','Habitaciones','Quartos'], ['2 bedrooms · 3 beds · 2 baths','2 hab. · 3 camas · 2 baños','2 quartos · 3 camas · 2 banheiros']],
+   [['Building','Edificio','Prédio'], ['Doorman entry — every guest registers ID','Portero — cada huésped registra su documento','Portaria — todo hóspede cadastra documento']],
+   [['Comfort','Comodidades','Conforto'], ['A/C throughout · TV in every room','A/C en todo · TV en cada cuarto','Ar em todo · TV em cada quarto']]
+  ],
+  rules:[
+   ['Bring ID or passport for every guest — the doorman will ask for it.','Trae documento o pasaporte de cada huésped — el portero lo pedirá.','Traga documento ou passaporte de cada hóspede — a portaria vai pedir.'],
+   ['Use the safe in the master suite for passports and valuables.','Usa la caja fuerte de la suite principal para pasaportes y objetos de valor.','Use o cofre da suíte master para passaportes e objetos de valor.'],
+   ['At the beach, take only what you need: phone in a front pocket, no jewelry.','En la playa lleva solo lo necesario: celular en el bolsillo de adelante, sin joyas.','Na praia leve só o necessário: celular no bolso da frente, sem joias.']
+  ],
+  host:'Julio', rio:true
+ },
+ {
+  id:'studio', name:['Copacabana Studio','Estudio Copacabana','Studio Copacabana'], short:['Copacabana Studio','Estudio Copacabana','Studio Copacabana'],
+  where:['Copacabana, Rio · Between Postos 5 & 6','Copacabana, Río · Entre los Postos 5 y 6','Copacabana, Rio · Entre os Postos 5 e 6'],
+  tag:['A quiet studio, ten minutes on foot from Ipanema and Arpoador.','Un estudio tranquilo, a diez minutos a pie de Ipanema y Arpoador.','Um studio tranquilo, a dez minutos a pé de Ipanema e do Arpoador.'],
+  facts:[
+   [['Guests','Huéspedes','Hóspedes'], ['Up to 2','Hasta 2','Até 2']],
+   [['Entrance','Entrada','Entrada'], ['Independent, set back from the street','Independiente, lejos de la calle','Independente, recuada da rua']],
+   [['Kitchen','Cocina','Cozinha'], ['Full kitchen · microwave · coffee maker','Completa · microondas · cafetera','Completa · micro-ondas · cafeteira']],
+   [['Laundry','Lavandería','Lavanderia'], ['Washer in the studio','Lavadora en el estudio','Máquina de lavar no studio']]
+  ],
+  rules:[
+   ['Bring ID or passport — building registration may be required.','Trae documento o pasaporte — el edificio puede pedir registro.','Traga documento ou passaporte — o prédio pode pedir cadastro.'],
+   ['At the beach, take only what you need: phone in a front pocket, no jewelry.','En la playa lleva solo lo necesario: celular en el bolsillo de adelante, sin joyas.','Na praia leve só o necessário: celular no bolso da frente, sem joias.']
+  ],
+  host:'Julio', rio:true
+ }
+];
+
+var RIO_TODO = [
+  { t:['Copacabana Beach','Playa de Copacabana','Praia de Copacabana'], m:['Beach','Playa','Praia'], d:['Step out the door. Rent a chair and umbrella from the barracas and order a coconut.','Sal por la puerta. Alquila silla y sombrilla en las barracas y pide un coco.','É só sair de casa. Alugue cadeira e guarda-sol na barraca e peça uma água de coco.'], q:'Praia de Copacabana Posto 5' },
+  { t:['Arpoador sunset','Atardecer en Arpoador','Pôr do sol no Arpoador'], m:['Must-do','Imperdible','Imperdível'], d:['Walk to the rock between Copacabana and Ipanema — locals applaud the sunset.','Camina a la piedra entre Copacabana e Ipanema — la gente aplaude el atardecer.','Caminhe até a pedra entre Copacabana e Ipanema — o pessoal aplaude o pôr do sol.'], q:'Pedra do Arpoador' },
+  { t:['Copacabana Fort','Fuerte de Copacabana','Forte de Copacabana'], m:['History','Historia','História'], d:['Ocean views, a small museum and coffee at the tip of the beach.','Vistas al mar, un pequeño museo y café en la punta de la playa.','Vista para o mar, museu e café na ponta da praia.'], q:'Forte de Copacabana' },
+  { t:['Ipanema & Leblon','Ipanema y Leblon','Ipanema e Leblon'], m:['Walk','Paseo','Passeio'], d:['Keep walking past Arpoador for boutiques, cafés and the famous beach.','Sigue caminando pasando Arpoador: tiendas, cafés y la famosa playa.','Continue depois do Arpoador: lojas, cafés e a praia famosa.'], q:'Ipanema Beach' },
+  { t:['Sugarloaf Mountain','Pan de Azúcar','Pão de Açúcar'], m:['Views','Vistas','Vista'], d:['Two cable cars up to the classic view of Rio. Go late afternoon.','Dos teleféricos hasta la vista clásica de Río. Ve al final de la tarde.','Dois bondinhos até a vista clássica do Rio. Vá no fim da tarde.'], q:'Parque Bondinho Pão de Açúcar' },
+  { t:['Christ the Redeemer','Cristo Redentor','Cristo Redentor'], m:['Icon','Ícono','Ícone'], d:['Go early on a clear morning to beat clouds and crowds.','Ve temprano en una mañana despejada para evitar nubes y filas.','Vá cedo numa manhã limpa para fugir das nuvens e das filas.'], q:'Cristo Redentor' },
+  { t:['Selarón Steps','Escalera Selarón','Escadaria Selarón'], m:['Art','Arte','Arte'], d:['The famous tiled staircase between Lapa and Santa Teresa.','La famosa escalera de azulejos entre Lapa y Santa Teresa.','A famosa escadaria de azulejos entre a Lapa e Santa Teresa.'], q:'Escadaria Selarón' },
+  { t:['Botanical Garden','Jardín Botánico','Jardim Botânico'], m:['Nature','Naturaleza','Natureza'], d:['Giant palms and quiet paths — a calm break from the beach.','Palmas gigantes y senderos tranquilos — un descanso de la playa.','Palmeiras gigantes e caminhos tranquilos — uma pausa da praia.'], q:'Jardim Botânico do Rio de Janeiro' }
+];
+P.forEach(function(p){
+  if (p.rio) {
+    p.todo = RIO_TODO; p.area = 'Copacabana Rio de Janeiro';
+    p.coffeeQ = 'padaria café Copacabana Rio de Janeiro'; p.seaQ = 'boteco Copacabana Rio de Janeiro';
+    p.delivery = RIO_DELIVERY; p.emerg = BR_HELP;
+    p.pharmacy = 'farmácia Copacabana Rio de Janeiro'; p.grocery = 'supermercado Copacabana Rio de Janeiro'; p.hospital = 'hospital emergência Copacabana Rio de Janeiro';
+  } else { p.host = 'Sol'; }
+});
+
+/* ===================== APP LOGIC (no need to edit below) ===================== */
+var LANGS = ['en','es','pt'], L = 0, cur = P[0], tab = 'home';
+function t(v){ return Array.isArray(v) ? (v[L] || v[0]) : v; }
+function esc(s){ return String(s).replace(/[&<>"]/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); }
+var ICONS = {
+  home:'<svg viewBox="0 0 24 24"><path d="M3 11l9-7 9 7"/><path d="M5 10v10h14V10"/></svg>',
+  todo:'<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M15.5 8.5l-2 5-5 2 2-5z"/></svg>',
+  eat:'<svg viewBox="0 0 24 24"><path d="M7 3v8a2 2 0 0 0 2 2v8"/><path d="M11 3v8"/><path d="M5 3v8"/><path d="M17 3c-2 2-2 6 0 8v10"/></svg>',
+  deliver:'<svg viewBox="0 0 24 24"><path d="M3 7h11v9H3z"/><path d="M14 10h4l3 3v3h-7"/><circle cx="7" cy="18" r="2"/><circle cx="17" cy="18" r="2"/></svg>',
+  help:'<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 8v5"/><path d="M12 16.5v.5"/></svg>'
+};
+var SUN = '<svg viewBox="0 0 100 70"><path d="M20 45a30 30 0 0 1 60 0z" fill="#C79A46"/><path d="M5 55q12-7 22 0t22 0t22 0t22 0" stroke="#B5563A" stroke-width="4" fill="none"/><path d="M5 65q12-7 22 0t22 0t22 0t22 0" stroke="#6E9C8F" stroke-width="4" fill="none"/></svg>';
+
+function linkCard(title, meta, desc, url){
+  var ext = /^https?:/.test(url);
+  return '<a class="card link" href="' + esc(url) + '"' + (ext ? ' target="_blank" rel="noopener"' : '') + '>' +
+    (meta ? '<div class="meta">' + esc(meta) + '</div>' : '') + '<h3>' + esc(title) + '</h3>' + (desc ? '<p>' + esc(desc) + '</p>' : '') + '</a>';
+}
+
+function render(){
+  document.documentElement.lang = LANGS[L];
+  document.title = t(UI.title) + ' — ' + t(cur.name) + ' · Have Less, Live More';
+  document.getElementById('picker').innerHTML = P.map(function(p){
+    return '<button class="chip' + (p === cur ? ' on' : '') + '" data-id="' + p.id + '">' + esc(t(p.short)) + '</button>';
+  }).join('');
+  document.getElementById('tabs').innerHTML = ['home','todo','eat','deliver','help'].map(function(k){
+    return '<button class="' + (k === tab ? 'on' : '') + '" data-tab="' + k + '">' + ICONS[k] + '<span>' + esc(t(UI[k])) + '</span></button>';
+  }).join('');
+  document.querySelectorAll('.lang-switch button').forEach(function(b){ b.classList.toggle('on', b.dataset.lang === LANGS[L]); });
+  var on = document.querySelector('.chip.on'); if (on && on.scrollIntoView) on.scrollIntoView({ block:'nearest', inline:'center' });
+
+  var h = '<section class="hero">' + SUN + '<div class="where">' + esc(t(cur.where)) + '</div><h1>' + esc(t(cur.name)) + '</h1><p>' + esc(t(cur.tag)) + '</p></section>';
+
+  if (tab === 'home') {
+    h += '<h2 class="sec">' + esc(t(UI.basics)) + '</h2><div class="facts">' +
+      cur.facts.map(function(f){ return '<div class="fact"><div class="k">' + esc(t(f[0])) + '</div><div class="v">' + esc(t(f[1])) + '</div></div>'; }).join('') + '</div>';
+    h += '<div class="callout calm">' + esc(t(UI.privateNote)) + '</div>';
+    h += '<h2 class="sec">' + esc(t(UI.rulesH)) + '</h2><ul class="rules">' + cur.rules.map(function(r){ return '<li>' + esc(t(r)) + '</li>'; }).join('') + '</ul>';
+    if (cur.book) h += '<div style="margin-top:16px;">' + linkCard(t(UI.welcomeBook), '', '', cur.book) + '</div>';
+  }
+  if (tab === 'todo') {
+    h += '<h2 class="sec">' + esc(t(UI.todoH)) + '</h2>' + cur.todo.map(function(x){ return linkCard(t(x.t), t(x.m), t(x.d), maps(x.q)); }).join('');
+  }
+  if (tab === 'eat') {
+    h += '<h2 class="sec">' + esc(t(UI.eatH)) + '</h2><p class="intro">' + esc(t(UI.eatIntro)) + '</p><div class="btns">' +
+      '<a class="btn primary" target="_blank" rel="noopener" href="' + maps('restaurants near ' + cur.area) + '">' + esc(t(['Restaurants','Restaurantes','Restaurantes'])) + '</a>' +
+      '<a class="btn" target="_blank" rel="noopener" href="' + maps(cur.coffeeQ) + '">' + esc(t(['Coffee & breakfast','Café y desayuno','Café e café da manhã'])) + '</a>' +
+      '<a class="btn" target="_blank" rel="noopener" href="' + maps(cur.seaQ) + '">' + esc(t(cur.rio ? ['Botecos & bars','Botecos y bares','Botecos e bares'] : ['Seafood','Mariscos','Frutos do mar'])) + '</a>' +
+      '<a class="btn" target="_blank" rel="noopener" href="' + maps((cur.rio ? 'churrascaria ' : 'Latin restaurant ') + cur.area) + '">' + esc(t(cur.rio ? ['Churrascarias','Churrasquerías','Churrascarias'] : ['Latin food','Comida latina','Comida latina'])) + '</a>' +
+      '</div>';
+    h += '<h2 class="sec">' + esc(t(UI.favH)) + '</h2><div class="callout calm">' + esc(t(UI.favNote)) + '</div>' +
+      linkCard(t(UI.email), cur.host, 'hello@havelesslivemore.com', 'mailto:hello@havelesslivemore.com?subject=' + encodeURIComponent(t(cur.name) + ' — recommendations'));
+  }
+  if (tab === 'deliver') {
+    h += '<h2 class="sec">' + esc(t(UI.delH)) + '</h2><p class="intro">' + esc(t(UI.delIntro)) + '</p>' +
+      cur.delivery.map(function(x){ return linkCard(x.t, '', t(x.d), x.u); }).join('');
+    h += '<h2 class="sec">' + esc(t(UI.essH)) + '</h2><div class="btns">' +
+      '<a class="btn" target="_blank" rel="noopener" href="' + maps(cur.grocery) + '">' + esc(t(['Supermarkets','Supermercados','Supermercados'])) + '</a>' +
+      '<a class="btn" target="_blank" rel="noopener" href="' + maps(cur.pharmacy) + '">' + esc(t(['Pharmacies','Farmacias','Farmácias'])) + '</a>' +
+      '</div>';
+  }
+  if (tab === 'help') {
+    h += '<h2 class="sec">' + esc(t(UI.helpH)) + '</h2>' +
+      cur.emerg.map(function(x){ return '<a class="card link" href="' + esc(x.u) + '"' + (/^https?:/.test(x.u) ? ' target="_blank" rel="noopener"' : '') + ' style="' + (x.danger ? 'border-color:#e0b39f;' : '') + '"><h3>' + esc(t(x.t)) + '</h3><p>' + esc(t(x.d)) + '</p></a>'; }).join('') +
+      '<div class="btns" style="margin-top:6px;"><a class="btn" target="_blank" rel="noopener" href="' + maps(cur.hospital) + '">' + esc(t(['Nearest hospital','Hospital más cercano','Hospital mais próximo'])) + '</a>' +
+      '<a class="btn" target="_blank" rel="noopener" href="' + maps(cur.pharmacy) + '">' + esc(t(['Pharmacies','Farmacias','Farmácias'])) + '</a></div>';
+    h += '<h2 class="sec">' + esc(t(UI.contactH)) + '</h2><p class="intro">' + esc(t(['Your host for this home:','Tu anfitrión para esta casa:','Seu anfitrião nesta casa:'])) + ' <strong>' + esc(cur.host) + '</strong></p>' +
+      '<div class="btns"><a class="btn primary" href="mailto:hello@havelesslivemore.com?subject=' + encodeURIComponent(t(cur.name)) + '">' + esc(t(UI.email)) + '</a>' +
+      '<a class="btn" href="contact.html">' + esc(t(UI.contactPg)) + '</a></div>';
+  }
+  h += '<p class="foot">' + esc(t(UI.foot)) + ' · <a href="index.html">' + esc(t(UI.back)) + '</a></p>';
+  document.getElementById('view').innerHTML = h;
+}
+
+function go(id, newTab, push){
+  var p = P.filter(function(x){ return x.id === id; })[0]; if (p) cur = p;
+  if (newTab) tab = newTab;
+  if (push !== false) history.replaceState(null, '', '#' + cur.id + '/' + tab);
+  try { localStorage.setItem('hllm-guide-home', cur.id); } catch (e) {}
+  render(); window.scrollTo(0, 0);
+  if (typeof gtag === 'function') gtag('event', 'guide_view', { property: cur.id, section: tab });
+}
+
+document.getElementById('picker').addEventListener('click', function(e){ var b = e.target.closest('.chip'); if (b) go(b.dataset.id); });
+document.getElementById('tabs').addEventListener('click', function(e){ var b = e.target.closest('button'); if (b) go(cur.id, b.dataset.tab); });
+document.querySelectorAll('.lang-switch button').forEach(function(b){
+  b.addEventListener('click', function(){
+    L = LANGS.indexOf(b.dataset.lang); render();
+    try { localStorage.setItem('hllm-lang', LANGS[L]); } catch (e) {}
+  });
+});
+
+(function start(){
+  var saved = null, home = null;
+  try { saved = localStorage.getItem('hllm-lang'); home = localStorage.getItem('hllm-guide-home'); } catch (e) {}
+  var nav = (navigator.language || '').toLowerCase().slice(0, 2);
+  L = Math.max(0, LANGS.indexOf(saved || nav));
+  var parts = location.hash.replace('#', '').split('/');
+  go(parts[0] || home || 'sol', ['home','todo','eat','deliver','help'].indexOf(parts[1]) >= 0 ? parts[1] : 'home');
+})();
+
+if ('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js').catch(function(){});
+</script>
+</body>
+</html>

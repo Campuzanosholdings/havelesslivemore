@@ -11,6 +11,14 @@
 </script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#FBF8F2">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Have Less">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
 <title>Have Less, Live More — Coastal Stays in Florida &amp; Rio de Janeiro</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -352,6 +360,23 @@
   }
   .lang-switch button.on{background:var(--navy);color:var(--paper);}
   .lang-switch button:not(.on):hover{background:var(--sand);}
+
+  /* ---- install-the-app banner ---- */
+  .app-banner{
+    position:fixed;left:16px;right:16px;bottom:16px;z-index:100;max-width:520px;margin:0 auto;
+    background:var(--navy);color:var(--paper);border-radius:14px;padding:14px 14px 14px 16px;
+    display:none;align-items:center;gap:14px;box-shadow:0 10px 30px rgba(20,40,47,.28);
+    padding-bottom:calc(14px + env(safe-area-inset-bottom, 0px));
+  }
+  .app-banner.show{display:flex;}
+  .app-banner img{width:46px;height:46px;border-radius:11px;flex-shrink:0;}
+  .app-banner .ab-text{flex:1;font-size:.86rem;line-height:1.35;}
+  .app-banner .ab-text strong{font-family:'Fraunces',serif;font-weight:500;font-size:1rem;display:block;margin-bottom:2px;}
+  .app-banner .ab-ios{display:none;}
+  .app-banner.ios .ab-ios{display:inline;}
+  .app-banner.ios .ab-android,.app-banner.ios .ab-install{display:none;}
+  .app-banner .ab-install{background:var(--gold);color:var(--navy);border:0;border-radius:20px;padding:9px 16px;font:500 .82rem 'Inter',sans-serif;cursor:pointer;white-space:nowrap;}
+  .app-banner .ab-close{background:transparent;border:0;color:var(--sand);font-size:1.3rem;line-height:1;cursor:pointer;padding:4px 6px;opacity:.7;}
 </style>
 </head>
 <body>
@@ -367,6 +392,7 @@
       <a href="things-to-do.html">Things To Do</a>
       <a href="vlog.html">Vlog</a>
       <a href="shop.html">Have Less Store</a>
+      <a href="guide.html">Guest Guide</a>
       <a href="contact.html">Contact Us</a>
       <a class="btn btn-primary" style="padding:9px 16px;" href="#inquiry">Book Now →</a>
     </div>
@@ -1211,6 +1237,78 @@ document.querySelectorAll('.card-slideshow').forEach(function(slideshow){
     slides[current].classList.add('active');
   }, 3500);
 });
+</script>
+
+<div class="app-banner" id="app-banner" role="dialog" aria-label="Install app">
+  <img src="icon-192.png" alt="">
+  <div class="ab-text">
+    <strong>Get the Have Less app</strong>
+    <span class="ab-android">Keep your stay, directions and our contact one tap away.</span>
+    <span class="ab-ios">Tap the Share button, then “Add to Home Screen”.</span>
+  </div>
+  <button class="ab-install" type="button" id="ab-install">Install</button>
+  <button class="ab-close" type="button" id="ab-close" aria-label="Close">×</button>
+</div>
+
+<script>
+// --- Installable app: translations for the banner ---
+Object.assign(HLLM_DICT.es, {
+  "Guest Guide": "Guía del huésped",
+  "Get the Have Less app": "Descarga la app Have Less",
+  "Keep your stay, directions and our contact one tap away.": "Ten tu estadía, direcciones y nuestro contacto a un toque.",
+  "Tap the Share button, then “Add to Home Screen”.": "Toca el botón Compartir y luego “Agregar a pantalla de inicio”.",
+  "Install": "Instalar"
+});
+Object.assign(HLLM_DICT.pt, {
+  "Guest Guide": "Guia do hóspede",
+  "Get the Have Less app": "Baixe o app Have Less",
+  "Keep your stay, directions and our contact one tap away.": "Sua estadia, rotas e nosso contato a um toque.",
+  "Tap the Share button, then “Add to Home Screen”.": "Toque em Compartilhar e depois em “Adicionar à Tela de Início”.",
+  "Install": "Instalar"
+});
+
+// --- Installable app: register the helper and show the install banner ---
+(function(){
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', function(){ navigator.serviceWorker.register('sw.js').catch(function(){}); });
+  }
+  var banner = document.getElementById('app-banner');
+  var standalone = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true;
+  var dismissed = 0;
+  try { dismissed = +localStorage.getItem('hllm-app-dismissed') || 0; } catch (e) {}
+  var recentlyDismissed = Date.now() - dismissed < 14 * 24 * 3600 * 1000;
+  if (standalone || recentlyDismissed) return;
+
+  function show(){ setTimeout(function(){ banner.classList.add('show'); }, 2500); }
+  document.getElementById('ab-close').addEventListener('click', function(){
+    banner.classList.remove('show');
+    try { localStorage.setItem('hllm-app-dismissed', String(Date.now())); } catch (e) {}
+  });
+
+  // Android / Chrome: real install button
+  var deferred = null;
+  window.addEventListener('beforeinstallprompt', function(e){
+    e.preventDefault(); deferred = e; show();
+  });
+  document.getElementById('ab-install').addEventListener('click', function(){
+    if (!deferred) return;
+    deferred.prompt();
+    deferred.userChoice.then(function(r){
+      if (typeof gtag === 'function') gtag('event', 'app_install_prompt', { outcome: r.outcome });
+      banner.classList.remove('show'); deferred = null;
+    });
+  });
+  window.addEventListener('appinstalled', function(){
+    banner.classList.remove('show');
+    if (typeof gtag === 'function') gtag('event', 'app_installed');
+  });
+
+  // iPhone / iPad Safari: no install button exists, so show the two-tap instructions
+  var ua = navigator.userAgent;
+  var isIOS = /iPad|iPhone|iPod/.test(ua) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+  var isSafari = /Safari/.test(ua) && !/CriOS|FxiOS|EdgiOS|Instagram|FBAN|FBAV/.test(ua);
+  if (isIOS && isSafari) { banner.classList.add('ios'); show(); }
+})();
 </script>
 
 </body>
