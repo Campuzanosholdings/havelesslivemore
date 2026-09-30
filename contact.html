@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-W3SLWQP64X"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag("js", new Date());
+  gtag("config", "G-W3SLWQP64X");
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact Us — Have Less, Live More</title>
+<meta name="description" content="Contact Have Less, Live More. Office: 18495 S Dixie Hwy, Suite 289, Cutler Bay, FL 33157. Email hello@havelesslivemore.com or Campuzanosholdings@gmail.com.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#14282F; --sand:#F1E9D8; --sand-deep:#E6DAC0; --clay:#B5563A;
+    --seafoam:#6E9C8F; --gold:#C79A46; --ink:#1B2B27; --paper:#FBF8F2;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--paper);color:var(--ink);font-family:'Inter',sans-serif;line-height:1.5;-webkit-font-smoothing:antialiased;}
+  a{color:inherit;text-decoration:none;}
+  .mono{font-family:'IBM Plex Mono',monospace;letter-spacing:.02em;}
+
+  /* ---- nav (same as home page) ---- */
+  header{position:sticky;top:0;z-index:50;background:rgba(251,248,242,.92);backdrop-filter:blur(8px);border-bottom:1px solid rgba(20,40,47,.08);}
+  nav{display:flex;align-items:center;justify-content:space-between;padding:18px 28px;max-width:1180px;margin:0 auto;gap:24px;flex-wrap:wrap;}
+  .brand{font-family:'Fraunces',serif;font-weight:600;font-size:1.6rem;letter-spacing:.01em;white-space:nowrap;}
+  .brand em{font-style:italic;color:var(--clay);}
+  .navlinks{display:flex;gap:28px;font-size:.85rem;flex-wrap:wrap;align-items:center;}
+  .navlinks a{padding:6px 0;border-bottom:1px solid transparent;transition:border-color .2s ease;}
+  .navlinks a:hover,.navlinks a.current{border-color:var(--clay);}
+  .btn{font-size:.82rem;padding:11px 18px;border-radius:2px;display:inline-block;transition:opacity .2s ease;}
+  .btn:hover{opacity:.8;}
+  .btn-primary{background:var(--clay);color:var(--paper);}
+  .btn-ghost{border:1px solid rgba(20,40,47,.25);}
+  .navlinks a.btn{border-bottom:0;}
+
+  .lang-switch{display:inline-flex;border:1px solid rgba(20,40,47,.2);border-radius:20px;overflow:hidden;font-family:'IBM Plex Mono',monospace;font-size:.74rem;letter-spacing:.08em;flex-shrink:0;}
+  .lang-switch button{background:transparent;border:0;padding:6px 12px;cursor:pointer;color:var(--ink);font:inherit;letter-spacing:inherit;}
+  .lang-switch button.on{background:var(--navy);color:var(--paper);}
+  .lang-switch button:not(.on):hover{background:var(--sand);}
+
+  /* ---- hero ---- */
+  .hero{padding:88px 28px 56px;max-width:1180px;margin:0 auto;}
+  .eyebrow{font-size:.78rem;text-transform:uppercase;letter-spacing:.14em;color:var(--seafoam);margin-bottom:22px;display:block;}
+  .hero h1{font-family:'Fraunces',serif;font-weight:500;font-size:clamp(2.3rem,5.4vw,4.2rem);line-height:1.05;letter-spacing:-.01em;max-width:17ch;}
+  .hero h1 em{font-style:italic;font-weight:400;color:var(--clay);}
+  .hero p{margin-top:24px;max-width:50ch;font-size:1.06rem;color:#3c4d48;}
+
+  .tideline{width:100%;height:64px;display:block;margin:8px 0;}
+  .tideline path{fill:none;stroke:var(--seafoam);stroke-width:1.4;opacity:.55;}
+
+  /* ---- contact block ---- */
+  .contact{background:var(--sand);padding:70px 0 80px;}
+  .contact-grid{max-width:1180px;margin:0 auto;padding:0 28px;display:grid;grid-template-columns:1fr 1.1fr;gap:48px;align-items:start;}
+  @media(max-width:860px){.contact-grid{grid-template-columns:1fr;}}
+
+  .info-list{display:flex;flex-direction:column;gap:18px;}
+  .info{background:var(--paper);border:1px solid rgba(20,40,47,.08);padding:24px 24px 22px;border-radius:2px;}
+  .info .tag{font-size:.74rem;text-transform:uppercase;letter-spacing:.14em;color:var(--clay);display:block;margin-bottom:10px;}
+  .info h3{font-family:'Fraunces',serif;font-weight:500;font-size:1.25rem;margin-bottom:6px;}
+  .info address{font-style:normal;font-size:1rem;line-height:1.55;color:#2e3e39;}
+  .info p{font-size:.92rem;color:#41504b;}
+  .info .link{color:var(--clay);text-decoration:underline;text-underline-offset:3px;font-weight:500;}
+  .info .actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px;}
+  .hosts{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:4px;}
+  .hosts div{border-left:1px solid rgba(20,40,47,.15);padding-left:12px;}
+  .hosts strong{font-family:'Fraunces',serif;font-weight:500;font-size:1.05rem;display:block;}
+  .hosts span{font-size:.82rem;color:#5c6b66;}
+
+  .form-card{background:var(--paper);border:1px solid rgba(20,40,47,.08);padding:34px 30px;border-radius:2px;}
+  .form-card h2{font-family:'Fraunces',serif;font-weight:500;font-size:clamp(1.6rem,3vw,2rem);margin-bottom:8px;}
+  .form-card > p{color:#4d5c57;font-size:.95rem;margin-bottom:24px;}
+  form{display:flex;flex-direction:column;gap:14px;}
+  label{font-size:.78rem;text-transform:uppercase;letter-spacing:.08em;color:#5c6b66;margin-bottom:6px;display:block;}
+  .field-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+  @media(max-width:600px){.field-row{grid-template-columns:1fr;}}
+  input,select,textarea{width:100%;padding:12px 14px;border:1px solid rgba(20,40,47,.2);background:var(--paper);font-family:'Inter',sans-serif;font-size:.94rem;border-radius:2px;color:var(--ink);}
+  textarea{resize:vertical;min-height:130px;}
+  .submit-btn{margin-top:8px;padding:14px 20px;background:var(--navy);color:var(--sand);border:none;font-size:.9rem;letter-spacing:.03em;cursor:pointer;border-radius:2px;}
+  .submit-btn:hover{background:#1c343c;}
+  .submit-btn:disabled{opacity:.6;cursor:wait;}
+  .form-note{font-size:.82rem;padding:10px 12px;border-radius:2px;background:#f6e2da;color:#8a3b1f;border:1px solid #e0b39f;display:none;}
+  .confirm-block{text-align:center;padding:30px 10px;}
+  .confirm-eyebrow{font-size:.78rem;text-transform:uppercase;letter-spacing:.1em;color:var(--seafoam);margin-bottom:10px;}
+  .confirm-block h3{font-family:'Fraunces',serif;font-weight:500;font-size:1.5rem;margin-bottom:12px;}
+  .confirm-block p{color:#4d5c57;font-size:.95rem;}
+
+  /* ---- map ---- */
+  .map-wrap{max-width:1180px;margin:0 auto;padding:70px 28px 90px;}
+  .map-head{display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:12px;margin-bottom:22px;}
+  .map-head h2{font-family:'Fraunces',serif;font-weight:500;font-size:clamp(1.6rem,3.4vw,2.2rem);}
+  .map-frame{width:100%;height:420px;border:0;border-radius:2px;display:block;filter:saturate(.85);background:var(--sand-deep);}
+
+  footer{padding:40px 28px;text-align:center;font-size:.8rem;color:#7c8a85;border-top:1px solid rgba(20,40,47,.08);line-height:1.8;}
+</style>
+</head>
+<body>
+
+<header>
+  <nav>
+    <a class="brand" href="index.html">Have Less, <em>Live More</em></a>
+    <div class="lang-switch" role="group" aria-label="Language / Idioma"><button type="button" data-lang="en" lang="en">EN</button><button type="button" data-lang="es" lang="es">ES</button><button type="button" data-lang="pt" lang="pt">PT</button></div>
+    <div class="navlinks">
+      <a href="index.html#florida">Florida</a>
+      <a href="index.html#rio">Rio de Janeiro</a>
+      <a href="availability.html">Availability</a>
+      <a href="things-to-do.html">Things To Do</a>
+      <a href="vlog.html">Vlog</a>
+      <a href="shop.html">Have Less Store</a>
+      <a class="current" href="contact.html">Contact Us</a>
+      <a class="btn btn-primary" style="padding:9px 16px;" href="index.html#inquiry">Book Now →</a>
+    </div>
+  </nav>
+</header>
+
+<section class="hero">
+  <span class="eyebrow">Contact Us</span>
+  <h1>Have less guessing. <em>Live more connected.</em></h1>
+  <p>Questions about a stay, a group trip, or the apparel line? Write to us — a real person from our family team answers every message.</p>
+</section>
+
+<svg class="tideline" viewBox="0 0 1180 64" preserveAspectRatio="none">
+  <path d="M0,32 C120,10 220,54 340,32 C460,10 560,54 680,32 C800,10 900,54 1020,32 C1100,18 1140,40 1180,32"/>
+</svg>
+
+<section class="contact">
+  <div class="contact-grid">
+
+    <div class="info-list">
+      <div class="info">
+        <span class="tag">Office</span>
+        <h3>Have Less, Live More</h3>
+        <address>
+          18495 S Dixie Hwy, Suite 289<br>
+          Cutler Bay, FL 33157<br>
+          United States
+        </address>
+        <div class="actions">
+          <a class="btn btn-ghost" href="https://www.google.com/maps/search/?api=1&query=18495+S+Dixie+Hwy+Suite+289+Cutler+Bay+FL+33157" target="_blank" rel="noopener">Open in Google Maps →</a>
+        </div>
+      </div>
+
+      <div class="info">
+        <span class="tag">Email</span>
+        <p><a class="link" href="mailto:hello@havelesslivemore.com">hello@havelesslivemore.com</a></p>
+        <p style="margin-top:6px;"><a class="link" href="mailto:Campuzanosholdings@gmail.com">Campuzanosholdings@gmail.com</a></p>
+        <p style="margin-top:10px;">The fastest way to reach us.</p>
+      </div>
+
+      <div class="info">
+        <span class="tag">Your hosts</span>
+        <div class="hosts">
+          <div><strong>Sol</strong><span>Florida homes</span></div>
+          <div><strong>Julio</strong><span>Rio de Janeiro</span></div>
+        </div>
+        <p style="margin-top:14px;">We speak English, Spanish &amp; Portuguese.</p>
+      </div>
+
+      <div class="info">
+        <span class="tag">Follow along</span>
+        <p><a class="link" href="https://www.instagram.com/have_less__live_more" target="_blank" rel="noopener">📷 @have_less__live_more</a></p>
+      </div>
+    </div>
+
+    <div class="form-card" id="message">
+      <h2>Send us a message</h2>
+      <p>Looking to book specific dates? The booking form on our home page checks availability for you.</p>
+      <div id="contact-form-wrap">
+      <form id="contact-form" onsubmit="return handleContactSubmit(event);">
+        <div class="field-row">
+          <div>
+            <label for="c-name">Name</label>
+            <input id="c-name" type="text" placeholder="Your name" required>
+          </div>
+          <div>
+            <label for="c-email">Email</label>
+            <input id="c-email" type="email" placeholder="you@example.com" required>
+          </div>
+        </div>
+        <div>
+          <label for="c-topic">Topic</label>
+          <select id="c-topic">
+            <option value="stay">A stay or booking question</option>
+            <option value="group">Group trip or event</option>
+            <option value="merch">Apparel line</option>
+            <option value="other">Something else</option>
+          </select>
+        </div>
+        <div>
+          <label for="c-message">Message</label>
+          <textarea id="c-message" placeholder="How can we help?" required></textarea>
+        </div>
+        <p class="form-note" id="c-note"></p>
+        <button class="submit-btn" type="submit">Send Message →</button>
+      </form>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section class="map-wrap">
+  <div class="map-head">
+    <h2>Find our office</h2>
+    <span class="mono" style="font-size:.82rem;color:var(--clay);">Cutler Bay, Florida</span>
+  </div>
+  <iframe class="map-frame" title="Map: 18495 S Dixie Hwy, Suite 289, Cutler Bay, FL 33157" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+    src="https://www.google.com/maps?q=18495+S+Dixie+Hwy+Suite+289,+Cutler+Bay,+FL+33157&output=embed"></iframe>
+</section>
+
+<footer>
+  Have Less, Live More — have less status quo, live more outside of the norm in Florida and Rio.<br>
+  18495 S Dixie Hwy, Suite 289, Cutler Bay, FL 33157 · <a href="mailto:hello@havelesslivemore.com">hello@havelesslivemore.com</a>
+</footer>
+
+<script>
+// --- Language switch (EN / ES / PT) — same choice is shared with the home page ---
+// To fix a translation: find the English text and edit the Spanish or Portuguese next to it.
+var HLLM_DICT = {
+ es: {
+  "Rio de Janeiro": "Río de Janeiro",
+  "Availability": "Disponibilidad",
+  "Things To Do": "Qué hacer",
+  "Have Less Store": "Tienda Have Less",
+  "Contact Us": "Contáctanos",
+  "Book Now →": "Reserva ahora →",
+  "Have less guessing.": "Menos dudas.",
+  "Live more connected.": "Más cerca de ti.",
+  "Questions about a stay, a group trip, or the apparel line? Write to us — a real person from our family team answers every message.": "¿Preguntas sobre una estadía, un viaje en grupo o nuestra línea de ropa? Escríbenos — una persona real de nuestro equipo familiar responde cada mensaje.",
+  "Office": "Oficina",
+  "United States": "Estados Unidos",
+  "Open in Google Maps →": "Abrir en Google Maps →",
+  "Email": "Correo",
+  "The fastest way to reach us.": "La forma más rápida de contactarnos.",
+  "Your hosts": "Tus anfitriones",
+  "Florida homes": "Casas en Florida",
+  "We speak English, Spanish & Portuguese.": "Hablamos inglés, español y portugués.",
+  "Follow along": "Síguenos",
+  "Send us a message": "Envíanos un mensaje",
+  "Looking to book specific dates? The booking form on our home page checks availability for you.": "¿Quieres reservar fechas específicas? El formulario de reserva en nuestra página principal revisa la disponibilidad por ti.",
+  "Name": "Nombre",
+  "Topic": "Tema",
+  "A stay or booking question": "Una estadía o reserva",
+  "Group trip or event": "Viaje en grupo o evento",
+  "Apparel line": "Línea de ropa",
+  "Something else": "Otra cosa",
+  "Message": "Mensaje",
+  "Send Message →": "Enviar mensaje →",
+  "Find our office": "Encuentra nuestra oficina",
+  "Cutler Bay, Florida": "Cutler Bay, Florida",
+  "Have Less, Live More — have less status quo, live more outside of the norm in Florida and Rio.": "Have Less, Live More — menos de lo de siempre, más fuera de lo común en Florida y Río.",
+  "Your name": "Tu nombre",
+  "How can we help?": "¿Cómo te podemos ayudar?",
+  "Sending…": "Enviando…",
+  "Message sent": "Mensaje enviado",
+  "Thanks — we got it.": "Gracias — lo recibimos.",
+  "We'll reply by email soon. Keep an eye on your inbox (and your spam folder, just in case).": "Te responderemos pronto por correo. Revisa tu bandeja de entrada (y la carpeta de spam, por si acaso).",
+  "Something went wrong sending your message — please try again, or email hello@havelesslivemore.com directly.": "Algo salió mal al enviar tu mensaje — inténtalo de nuevo o escríbenos directamente a hello@havelesslivemore.com."
+ },
+ pt: {
+  "Florida": "Flórida",
+  "Availability": "Disponibilidade",
+  "Things To Do": "O que fazer",
+  "Have Less Store": "Loja Have Less",
+  "Contact Us": "Fale conosco",
+  "Book Now →": "Reserve agora →",
+  "Have less guessing.": "Menos dúvidas.",
+  "Live more connected.": "Mais perto de você.",
+  "Questions about a stay, a group trip, or the apparel line? Write to us — a real person from our family team answers every message.": "Dúvidas sobre uma estadia, uma viagem em grupo ou nossa linha de roupas? Escreva pra gente — uma pessoa de verdade da nossa equipe familiar responde cada mensagem.",
+  "Office": "Escritório",
+  "United States": "Estados Unidos",
+  "Open in Google Maps →": "Abrir no Google Maps →",
+  "Email": "E-mail",
+  "The fastest way to reach us.": "O jeito mais rápido de falar com a gente.",
+  "Your hosts": "Seus anfitriões",
+  "Florida homes": "Casas na Flórida",
+  "We speak English, Spanish & Portuguese.": "Falamos inglês, espanhol e português.",
+  "Follow along": "Acompanhe",
+  "Send us a message": "Mande uma mensagem",
+  "Looking to book specific dates? The booking form on our home page checks availability for you.": "Quer reservar datas específicas? O formulário de reserva na página inicial confere a disponibilidade pra você.",
+  "Name": "Nome",
+  "Topic": "Assunto",
+  "A stay or booking question": "Estadia ou reserva",
+  "Group trip or event": "Viagem em grupo ou evento",
+  "Apparel line": "Linha de roupas",
+  "Something else": "Outro assunto",
+  "Message": "Mensagem",
+  "Send Message →": "Enviar mensagem →",
+  "Find our office": "Encontre nosso escritório",
+  "Cutler Bay, Florida": "Cutler Bay, Flórida",
+  "Have Less, Live More — have less status quo, live more outside of the norm in Florida and Rio.": "Have Less, Live More — menos do mesmo, mais fora do comum na Flórida e no Rio.",
+  "Your name": "Seu nome",
+  "you@example.com": "voce@exemplo.com",
+  "How can we help?": "Como podemos ajudar?",
+  "Sending…": "Enviando…",
+  "Message sent": "Mensagem enviada",
+  "Thanks — we got it.": "Obrigado — recebemos.",
+  "We'll reply by email soon. Keep an eye on your inbox (and your spam folder, just in case).": "Vamos responder por e-mail em breve. Fique de olho na sua caixa de entrada (e na pasta de spam, por via das dúvidas).",
+  "Something went wrong sending your message — please try again, or email hello@havelesslivemore.com directly.": "Algo deu errado ao enviar sua mensagem — tente de novo ou mande um e-mail direto para hello@havelesslivemore.com."
+ }
+};
+var HLLM_TITLE = { en: document.title, es: "Contáctanos — Have Less, Live More", pt: "Fale conosco — Have Less, Live More" };
+window.HLLM_LANG = 'en';
+function T(en){ var d = HLLM_DICT[window.HLLM_LANG]; return (d && d[en]) ? d[en] : en; }
+(function(){
+  var textNodes = [], attrs = [];
+  function norm(t){ return t.replace(/\s+/g, ' ').trim(); }
+  function has(k){ return HLLM_DICT.es[k] || HLLM_DICT.pt[k]; }
+  function word(lang, key){ var d = HLLM_DICT[lang]; return (d && d[key]) ? d[key] : key; }
+  function collect(){
+    var w = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, {
+      acceptNode: function(n){ var p = n.parentNode.nodeName; return (p === 'SCRIPT' || p === 'STYLE') ? 2 : 1; }
+    });
+    var n;
+    while ((n = w.nextNode())) {
+      var key = norm(n.nodeValue);
+      if (has(key)) {
+        var m = n.nodeValue.match(/^(\s*)[\s\S]*?(\s*)$/);
+        textNodes.push({ node: n, en: n.nodeValue, key: key, pre: m[1], post: m[2] });
+      }
+    }
+    document.querySelectorAll('[placeholder]').forEach(function(el){
+      var v = el.getAttribute('placeholder');
+      if (v && has(v)) attrs.push({ el: el, attr: 'placeholder', en: v });
+    });
+  }
+  function apply(lang){
+    window.HLLM_LANG = lang;
+    textNodes.forEach(function(t){ t.node.nodeValue = lang === 'en' ? t.en : t.pre + word(lang, t.key) + t.post; });
+    attrs.forEach(function(a){ a.el.setAttribute(a.attr, lang === 'en' ? a.en : word(lang, a.en)); });
+    document.documentElement.lang = lang;
+    document.title = HLLM_TITLE[lang];
+    document.querySelectorAll('.lang-switch button').forEach(function(b){
+      var on = b.getAttribute('data-lang') === lang;
+      b.classList.toggle('on', on);
+      b.setAttribute('aria-pressed', on ? 'true' : 'false');
+    });
+    try { localStorage.setItem('hllm-lang', lang); } catch (e) {}
+  }
+  function start(){
+    collect();
+    var saved = null;
+    try { saved = localStorage.getItem('hllm-lang'); } catch (e) {}
+    var nav = (navigator.language || '').toLowerCase().slice(0, 2);
+    if (saved && !HLLM_TITLE[saved]) saved = null;
+    apply(saved || (HLLM_DICT[nav] ? nav : 'en'));
+    document.querySelectorAll('.lang-switch button').forEach(function(b){
+      b.addEventListener('click', function(){
+        var lang = b.getAttribute('data-lang');
+        apply(lang);
+        if (typeof gtag === 'function') gtag('event', 'language_switch', { language: lang });
+      });
+    });
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', start); else start();
+})();
+
+// --- Contact form: sends to the same Formspree inbox as the booking form ---
+const FORMSPREE_ENDPOINT = 'https://formspree.io/f/mnpqawzn';
+
+async function handleContactSubmit(e){
+  e.preventDefault();
+  var btn = document.querySelector('#contact-form .submit-btn');
+  var note = document.getElementById('c-note');
+  var topicSel = document.getElementById('c-topic');
+  var topic = topicSel.options[topicSel.selectedIndex].text;
+  var payload = {
+    name: document.getElementById('c-name').value,
+    email: document.getElementById('c-email').value,
+    topic: topic,
+    message: document.getElementById('c-message').value,
+    language: ({ en: 'English', es: 'Español', pt: 'Português' })[window.HLLM_LANG],
+    _subject: 'Contact page: ' + topic,
+  };
+  btn.disabled = true;
+  btn.textContent = T('Sending…');
+  note.style.display = 'none';
+  try {
+    var res = await fetch(FORMSPREE_ENDPOINT, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify(payload),
+    });
+    if (!res.ok) throw new Error('send failed');
+    document.getElementById('contact-form-wrap').innerHTML =
+      '<div class="confirm-block">' +
+        '<p class="confirm-eyebrow mono">' + T('Message sent') + '</p>' +
+        '<h3>' + T('Thanks — we got it.') + '</h3>' +
+        '<p>' + T('We\'ll reply by email soon. Keep an eye on your inbox (and your spam folder, just in case).') + '</p>' +
+      '</div>';
+    if (typeof gtag === 'function') gtag('event', 'contact_form_sent', { topic: topicSel.value });
+  } catch (err) {
+    btn.disabled = false;
+    btn.textContent = T('Send Message →');
+    note.style.display = 'block';
+    note.textContent = T('Something went wrong sending your message — please try again, or email hello@havelesslivemore.com directly.');
+  }
+  return false;
+}
+</script>
+
+</body>
+</html>
