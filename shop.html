@@ -55,7 +55,7 @@ nav{
   letter-spacing:.01em;white-space:nowrap;
 }
 .brand em{font-style:italic;color:var(--clay);}
-.navlinks{display:flex;gap:28px;font-size:.85rem;flex-wrap:wrap;}
+.navlinks{display:flex;gap:28px;font-size:.85rem;flex-wrap:wrap;align-items:center;}
 .navlinks a{opacity:.75;transition:opacity .15s;}
 .navlinks a:hover, .navlinks a.active{opacity:1;color:var(--clay);}
 .btn-primary{
@@ -133,8 +133,13 @@ footer{
 }
 
 @media(max-width:640px){
-  .navlinks{display:none;}
+  .navlinks a:not(.nav-guide){display:none;}
 }
+
+  /* ---- highlighted Guest Guide link ---- */
+  a.nav-guide{display:inline-flex;align-items:center;gap:7px;padding:7px 14px 7px 11px !important;border:1px solid #14282F !important;border-radius:20px;background:#fff;color:#14282F !important;font-size:.84rem;font-weight:500;opacity:1 !important;white-space:nowrap;text-decoration:none;transition:background .2s ease,color .2s ease;}
+  a.nav-guide:hover{background:#14282F;color:#FBF8F2 !important;}
+  a.nav-guide svg{flex-shrink:0;display:block;}
 </style>
 </head>
 <body>
@@ -144,8 +149,9 @@ footer{
     <a href="index.html" class="brand">Have Less, <em>Live More</em></a>
     <div class="navlinks">
       <a href="index.html">Home</a>
+      <a class="nav-guide" href="guide.html"><svg aria-hidden="true" viewBox="0 0 24 24" width="19" height="19"><path d="M5 15a7 7 0 0 1 14 0z" fill="#C79A46"/><path d="M3 18.5q2.25-1.5 4.5 0t4.5 0t4.5 0t4.5 0" stroke="#B5563A" stroke-width="1.6" fill="none" stroke-linecap="round"/></svg><span>Guest Guide</span></a>
       <a href="shop.html" class="active">Shop</a>
-      <a href="index.html#contact">Contact</a>
+      <a href="contact.html">Contact Us</a>
     </div>
     <a href="https://instagram.com/have_less__live_more" target="_blank" rel="noopener" class="btn-primary">Follow →</a>
   </nav>
