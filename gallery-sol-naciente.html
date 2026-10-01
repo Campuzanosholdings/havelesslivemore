@@ -29,12 +29,17 @@
   .grid a{display:block;overflow:hidden;border-radius:2px;background:#e6dac0;}
   .grid img{width:100%;height:100%;object-fit:cover;aspect-ratio:4/3;display:block;transition:transform .3s ease;}
   .grid a:hover img{transform:scale(1.04);}
+
+  /* ---- highlighted Guest Guide link ---- */
+  a.nav-guide{display:inline-flex;align-items:center;gap:7px;padding:7px 14px 7px 11px !important;border:1px solid #14282F !important;border-radius:20px;background:#fff;color:#14282F !important;font-size:.84rem;font-weight:500;opacity:1 !important;white-space:nowrap;text-decoration:none;transition:background .2s ease,color .2s ease;}
+  a.nav-guide:hover{background:#14282F;color:#FBF8F2 !important;}
+  a.nav-guide svg{flex-shrink:0;display:block;}
 </style>
 </head>
 <body>
 <div class="wrap">
   <header>
-    <a class="back" href="index.html#florida">← Back to Have Less, Live More</a>
+    <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;"><a class="back" href="index.html#florida">← Back to Have Less, Live More</a><a class="nav-guide" href="guide.html#sol"><svg aria-hidden="true" viewBox="0 0 24 24" width="19" height="19"><path d="M5 15a7 7 0 0 1 14 0z" fill="#C79A46"/><path d="M3 18.5q2.25-1.5 4.5 0t4.5 0t4.5 0t4.5 0" stroke="#B5563A" stroke-width="1.6" fill="none" stroke-linecap="round"/></svg><span>Guest Guide for this home</span></a></div>
     <h1>Casa del Sol Naciente</h1>
     <p class="sub">Ponte Vedra, FL — full photo set</p>
   </header>
