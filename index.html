@@ -689,7 +689,7 @@
       <div class="how-step">
         <div class="how-num mono">03</div>
         <h3>Pay through the portal</h3>
-        <p>Once signed, a secure Stripe payment link confirms your stay — priced per night for however long you're staying. <span class="soon" id="how-payment-soon">Payment links in progress — not live yet.</span></p>
+        <p>Once signed, we email your confirmed total and a secure Stripe payment link. Pay by card and your stay is locked in.</p>
       </div>
       <div class="how-step">
         <div class="how-num mono">04</div>
@@ -858,7 +858,7 @@ var HLLM_DICT = { es: {
  "Once we confirm your dates, you'll get the rental agreement to review and sign electronically.": "Cuando confirmemos tus fechas, recibirás el contrato de alquiler para revisarlo y firmarlo electrónicamente.",
  "Preview the contract": "Ver el contrato",
  "Pay through the portal": "Paga en el portal",
- "Once signed, a secure Stripe payment link confirms your stay — priced per night for however long you're staying.": "Una vez firmado, un enlace de pago seguro de Stripe confirma tu estadía — con precio por noche según los días que te quedes.",
+ "Once signed, we email your confirmed total and a secure Stripe payment link. Pay by card and your stay is locked in.": "Una vez firmado, te enviamos por correo el total confirmado y un enlace de pago seguro de Stripe. Pagas con tarjeta y tu estadía queda asegurada.",
  "Payment links in progress — not live yet.": "Enlaces de pago en preparación — aún no están activos.",
  "Pack less. Live more.": "Empaca menos. Vive más.",
  "Check-in details land in your inbox a few days before arrival — no app, no platform fees.": "Los detalles de llegada te llegan por correo unos días antes — sin apps ni comisiones de plataforma.",
@@ -889,11 +889,11 @@ var HLLM_DICT = { es: {
  "review and sign your rental agreement —": "revisa y firma tu contrato de alquiler —",
  "open the contract →": "abrir el contrato →",
  "Then:": "Luego:",
- "a secure payment link finalizes the booking —": "un enlace de pago seguro completa la reserva —",
+ "once we email your confirmed total, pay securely through Stripe to finalize the booking —": "cuando te enviemos por correo el total confirmado, paga de forma segura con Stripe para completar la reserva —",
  "a secure payment link finalizes the booking.": "un enlace de pago seguro completa la reserva.",
- "pay now →": "pagar ahora →",
+ "open the payment page →": "abrir la página de pago →",
  "Coming soon": "Próximamente",
- "Sign and return the contract as soon as it's convenient — we'll follow up by email to complete payment by hand until the online portal is live.": "Firma y devuelve el contrato cuando te sea posible — te escribiremos por correo para completar el pago manualmente mientras el portal en línea no esté activo.",
+ "Sign and return the contract as soon as it's convenient — we'll email your confirmed total, and payment follows once you have it.": "Firma y devuelve el contrato cuando te sea posible — te enviaremos por correo el total confirmado, y el pago se hace una vez que lo tengas.",
  "Not connected yet": "Aún no conectado",
  "The inquiry form isn't wired up to send us anything yet.": "El formulario todavía no está conectado para enviarnos mensajes.",
  "In the meantime, please email your dates and the property name directly to": "Mientras tanto, envíanos tus fechas y el nombre de la propiedad directamente a",
@@ -1001,7 +1001,7 @@ var HLLM_DICT = { es: {
  "Once we confirm your dates, you'll get the rental agreement to review and sign electronically.": "Assim que confirmarmos suas datas, você recebe o contrato de locação para revisar e assinar eletronicamente.",
  "Preview the contract": "Ver o contrato",
  "Pay through the portal": "Pague pelo portal",
- "Once signed, a secure Stripe payment link confirms your stay — priced per night for however long you're staying.": "Depois de assinado, um link de pagamento seguro da Stripe confirma sua estadia — com preço por noite, pelo tempo que você ficar.",
+ "Once signed, we email your confirmed total and a secure Stripe payment link. Pay by card and your stay is locked in.": "Depois de assinado, enviamos por e-mail o total confirmado e um link de pagamento seguro da Stripe. Você paga com cartão e sua estadia fica garantida.",
  "Payment links in progress — not live yet.": "Links de pagamento em preparação — ainda não estão ativos.",
  "Pack less. Live more.": "Leve menos. Viva mais.",
  "Check-in details land in your inbox a few days before arrival — no app, no platform fees.": "Os detalhes do check-in chegam no seu e-mail alguns dias antes — sem aplicativo, sem taxas de plataforma.",
@@ -1033,11 +1033,11 @@ var HLLM_DICT = { es: {
  "review and sign your rental agreement —": "revise e assine seu contrato de locação —",
  "open the contract →": "abrir o contrato →",
  "Then:": "Por fim:",
- "a secure payment link finalizes the booking —": "um link de pagamento seguro finaliza a reserva —",
+ "once we email your confirmed total, pay securely through Stripe to finalize the booking —": "quando enviarmos por e-mail o total confirmado, pague com segurança pela Stripe para finalizar a reserva —",
  "a secure payment link finalizes the booking.": "um link de pagamento seguro finaliza a reserva.",
- "pay now →": "pagar agora →",
+ "open the payment page →": "abrir a página de pagamento →",
  "Coming soon": "Em breve",
- "Sign and return the contract as soon as it's convenient — we'll follow up by email to complete payment by hand until the online portal is live.": "Assine e devolva o contrato quando puder — vamos entrar em contato por e-mail para concluir o pagamento manualmente enquanto o portal online não estiver ativo.",
+ "Sign and return the contract as soon as it's convenient — we'll email your confirmed total, and payment follows once you have it.": "Assine e devolva o contrato quando puder — enviaremos por e-mail o total confirmado, e o pagamento é feito assim que você o receber.",
  "Not connected yet": "Ainda não conectado",
  "The inquiry form isn't wired up to send us anything yet.": "O formulário ainda não está conectado para nos enviar mensagens.",
  "In the meantime, please email your dates and the property name directly to": "Enquanto isso, mande suas datas e o nome do imóvel direto para",
@@ -1110,14 +1110,13 @@ function T(en){ var d = HLLM_DICT[window.HLLM_LANG]; return (d && d[en]) ? d[en]
 //    "not connected yet" message instead of a fake success screen.
 const FORMSPREE_ENDPOINT = 'https://formspree.io/f/mnpqawzn';
 
-// --- Stripe Payment Links, one per property (nightly rate, guest sets quantity = nights) ---
-// Create each link in Stripe Dashboard > Payment Links, using "customer adjusts quantity"
-// priced per night, then paste the real URL in below. Until a property's link is filled
-// in, its booking confirmation shows "coming soon" instead, same as today.
+// --- Stripe Payment Links, one per property (guest enters the total we quoted by email) ---
+// Each link is a "customer chooses what to pay" Payment Link in the Stripe Dashboard.
+// Until a property's link is filled in, its booking confirmation shows "coming soon".
 const PAYMENT_LINKS = {
-  'sol-naciente': null,        // e.g. 'https://buy.stripe.com/xxxxxxxxxxxx'
-  'luna-cresciente': null,
-  'miami-oasis': null,
+  'sol-naciente': 'https://book.stripe.com/3cI9AU8YWbRBahF9GJbQY00',
+  'luna-cresciente': 'https://book.stripe.com/28E9AUejg9JtexV9GJbQY01',
+  'miami-oasis': 'https://book.stripe.com/cNi5kE8YW6xh2Pd5qtbQY02',
   'copacabana-apt': null,
   'copacabana-studio': null,
 };
@@ -1207,7 +1206,7 @@ async function handleInquirySubmit(e){
 
     var paymentLink = PAYMENT_LINKS[slug];
     var paymentStep = paymentLink
-      ? '<li><strong>' + T('Then:') + '</strong> ' + T('a secure payment link finalizes the booking —') + ' <a href="' + paymentLink + '" target="_blank" rel="noopener" class="contract-link">' + T('pay now →') + '</a></li>'
+      ? '<li><strong>' + T('Then:') + '</strong> ' + T('once we email your confirmed total, pay securely through Stripe to finalize the booking —') + ' <a href="' + paymentLink + '" target="_blank" rel="noopener" class="contract-link">' + T('open the payment page →') + '</a></li>'
       : '<li><strong>' + T('Then:') + '</strong> ' + T('a secure payment link finalizes the booking.') + ' <span class="soon">' + T('Coming soon') + '</span></li>';
     wrap.innerHTML =
       '<div class="confirm-block">' +
@@ -1218,7 +1217,7 @@ async function handleInquirySubmit(e){
           '<li><strong>' + T('Next:') + '</strong> ' + T('review and sign your rental agreement —') + ' <a href="rental-agreement.pdf" target="_blank" rel="noopener" class="contract-link">' + T('open the contract →') + '</a></li>' +
           paymentStep +
         '</ol>' +
-        '<p class="confirm-note">' + T('Sign and return the contract as soon as it\'s convenient — we\'ll follow up by email to complete payment by hand until the online portal is live.') + '</p>' +
+        '<p class="confirm-note">' + T('Sign and return the contract as soon as it\'s convenient — we\'ll email your confirmed total, and payment follows once you have it.') + '</p>' +
       '</div>';
   } catch (err) {
     submitBtn.disabled = false;
