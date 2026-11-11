@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-10T19:36:05.846Z",
+  "generatedAt": "2026-11-11T01:10:20.445Z",
   "properties": {
     "sol-naciente": {
       "name": "Casa del Sol Naciente",
@@ -102,10 +102,6 @@
     "miami-oasis": {
       "name": "Miami Oasis with Pool",
       "busy": [
-        {
-          "start": "2026-11-06",
-          "end": "2026-11-09"
-        },
         {
           "start": "2026-11-25",
           "end": "2026-11-30"
